@@ -1,96 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categorías</title>
-    <!-- Incluir Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Estilos personalizados */
-        body {
-            padding-top: 20px;
-        }
-        
-        /* Establecer un ancho máximo de 1280px y centrar el contenido */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto; /* Margen automático para centrar el contenido */
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Mi Sitio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Categorías</title>
+        <!-- Incluir Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="vapor-style.css">
+
+        <style type="text/css">
+
+            .navbar-content{
+                max-width: 1280px;
+                margin: auto;
+            }
+
+            .card-header{
+                text-align: center;
+            }
+
+            .body-content{
+                max-width: 1280px;
+                margin: auto;
+                margin-top: 50px;
+            }
+
+        </style>
+
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+
+            <div class="navbar-content container-fluid">
+            <a class="navbar-brand" href="#">Amaclon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Acerca de</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
-                    </li>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home
+                    <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </li>
                 </ul>
+                <form class="d-flex">
+                <input class="form-control me-sm-2" type="search" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
+            </div>
+        </nav>
+
+        <!-- Contenido principal -->
+        
+        <div class="body-content">
+            
+            <card class="card border-primary mb-3">
+
+                <!-- Titulo de la tabla -->
+                <cheader class="card-header text-secondary-emphasis border-primary mb-3">
+                    <h2>Mis pedidos</h2>
+                </cheader>
+    
+                <!-- Contenido de la tabla -->
+                <cbody class="card-body">
+
+                    <table class="table">
+
+                        <thead class="text-center">
+                            <tr class="table-primary">
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Fecha de entrega</th>
+                            <th>Estatus</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="text-center">
+                            <tr>
+                                <td>142389</td>
+                                <td>Pandora - Anillo Corazón Rojo</td>
+                                <td>1</td>
+                                <td>7/09/2023</td>
+                                <td class="text-success">Entregado</td>
+                            </tr>
+                            <tr>
+                                <td>142578</td>
+                                <td>MSI - Laptop Katana 17 B13V</td>
+                                <td>1</td>
+                                <td>9/09/2023</td>
+                                <td class="text-success">Entregado</td>
+                            </tr>
+                            <tr>
+                                <td>143893</td>
+                                <td>Mini Ventilador Forma Mickey</td>
+                                <td>50</td>
+                                <td>12/09/2023</td>
+                                <td class="text-danger">Cancelado</td>
+                            </tr>
+                            <tr>
+                                <td>152647</td>
+                                <td>Funko Pop - Spiderman Miles Morales</td>
+                                <td>1</td>
+                                <td>18/09/2023</td>
+                                <td class="text-warning">En camino</td>
+                            </tr>
+                            <tr>
+                                <td>164625</td>
+                                <td>Funda Audífonos Airpods</td>
+                                <td>2</td>
+                                <td>20/09/2023</td>
+                                <td class="text-info">En proceso de validación</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </cbody>
+            </card>
         </div>
-    </nav>
+    </body>
 
-    <!-- Contenido principal -->
-    <div class="container mt-4">
-        <h1>Listado de categorías</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Category ID</th>
-                    <th>Code</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>CAT001</td>
-                    <td>Categoría 1</td>
-                    <td>Activo</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>CAT002</td>
-                    <td>Categoría 2</td>
-                    <td>Inactivo</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>CAT003</td>
-                    <td>Categoría 3</td>
-                    <td>Activo</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>CAT004</td>
-                    <td>Categoría 4</td>
-                    <td>Inactivo</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>CAT005</td>
-                    <td>Categoría 5</td>
-                    <td>Activo</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 </html>
