@@ -12,4 +12,5 @@ import { CategoryComponent } from './components/category/category.component';
     CommonModule
   ]
 })
+
 export class ProductModule { }

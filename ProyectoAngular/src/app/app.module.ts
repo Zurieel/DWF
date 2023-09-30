@@ -13,7 +13,7 @@ import { ProductModule } from './modules/product/product.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
     ProductModule
   ],
   providers: [],
