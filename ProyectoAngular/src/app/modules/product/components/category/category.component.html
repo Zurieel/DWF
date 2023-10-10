@@ -1,23 +1,63 @@
-<!-- Agrega el botón al principio del contenido -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Abrir Modal
-</button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="exampleModal">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Título del Modal</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <h3 class="modal-title" >Nueva Película</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"><span aria-hidden="true"></span>
+        </button>
       </div>
+
       <div class="modal-body">
-        Contenido del modal aquí...
+
+        <!-- form  -->
+        <form [formGroup]="form" (ngSubmit)="ngOnSubmit()">
+
+          <!-- code  -->
+          <div class="form-group">
+            <label for="code" class="form-label mt-4">Género <span class="text-danger">*</span> </label>
+            <select class="form-select" formControlName="code" [ngClass]="{'is-invalid': form.controls['code'].errors && submitted}">
+              <option value="" disabled selected>Seleccione una opción</option>
+              <option>Acción</option>
+              <option>Animación</option>
+              <option>Aventura</option>
+              <option>Comedia</option>
+              <option>Drama</option>
+              <option>Musical</option>
+              <option>Romance</option>
+              <option>Sci-Fi</option>
+              <option>Terror</option>
+              <option>Thriller</option>
+            </select>
+            <div *ngIf="form.controls['code'].errors && submitted">
+              <small class="text-danger">Por favor, seleccione una opción.</small>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- category  -->
+          <div class="form-group">
+            <label for="category">Nombre <span class="text-danger">*</span> </label>
+            <input type="text" class="form-control" formControlName="category" id="category" placeholder="Ingrese el nombre de la película" 
+              [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}" >
+            <div *ngIf="form.controls['category'].errors && submitted">
+              <small class="text-danger">Por favor, ingrese un nombre válido.</small>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- button  -->
+          <div class="form-button">
+            <button type="submit" class="btn btn-secondary btn-form">Guardar</button>
+          </div>
+
+        </form>
+
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
-      </div>
+      
     </div>
   </div>
 </div>
@@ -32,27 +72,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Inicio
-            <span class="visually-hidden">(current)</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Mi Perfil</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Mis Rentas</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categorías</a>
-            <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-        </li>
         </ul>
         <form class="d-flex">
         <input class="form-control me-sm-2" type="search" placeholder="Search">
@@ -68,7 +87,7 @@
 
         <!-- Table title  -->
         <div class="card-header border-primary mb-3">
-            <h1>Mis Rentas</h1>
+            <h1>Catálogo </h1>
         </div>
         
         <!-- Table content -->
@@ -88,11 +107,16 @@
                 <td>{{ i + 1 }}</td>
                 <td>{{ category.code }}</td>
                 <td>{{ category.category }}</td>
-                <td>{{ category.status == 0 ? "Rentada": "Devuelta" }}</td>
+                <td>{{ category.status == 0 ? "En renta": "Rentada" }}</td>
                 </tr>
             </tbody>
             </table>
         </div>
-        </div>
+    </div>
+
+    <!-- Agrega el botón de agregar película -->
+  <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Agregar Película
+  </button>
 
 </div>
