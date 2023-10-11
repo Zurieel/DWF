@@ -63,8 +63,8 @@ export class CategoryComponent {
   }
 
   resetForm() {
-    this.form.controls['code'].setValue('Seleccione una opción');
     this.form.reset();
+    this.form.controls['code'].setValue("");
     this.submitted = false;
     $("#exampleModal").modal("show");
   }
