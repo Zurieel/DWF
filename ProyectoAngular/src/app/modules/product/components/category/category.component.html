@@ -1,11 +1,95 @@
 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+
+    <div class="navbar-content container-fluid">
+    <a class="navbar-brand" href="#">Clonbuster</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+        </ul>
+        <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    </div>
+</nav>
+
+<div class="body-content">
+
+    <!-- Agrega el botón de agregar película -->
+    <button type="button" class="btn btn-outline-secondary" (click)="showModalForm()">
+      <i class="ph ph-list-plus icon-text-button"></i>
+      Agregar Película
+    </button>
+
+    <br><br>
+
+    <div class="card border-primary mb-3">
+
+        <!-- Table title  -->
+        <div class="card-header border-primary mb-3">
+            <h1>Catálogo </h1>
+        </div>
+        
+        <!-- Table content -->
+        
+        <div class="card-body">
+            <table class="table">
+            <thead>
+                <tr class="table-primary">
+                <th>No.</th>
+                <th>Género</th>
+                <th>Nombre</th>
+                <th>Estatus</th>
+                <th>Más</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories; let i = index" >
+                <td>{{ i + 1 }}</td>
+                <td>{{ category.code }}</td>
+                <td>{{ category.category }}</td>
+                <td>
+                  <div class="td-status"
+                  [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
+                    {{ category.status == 0 ? "Rentada" : "En renta" }}
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-primary dropdown" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="ph ph-dots-three-circle icon-menu"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item edit-item" (click)="updateCategory(category)">
+                        <i class="ph ph-note-pencil icon-text-ul"></i>Editar
+                      </a>
+                      <a *ngIf="category.status == 0" class="dropdown-item enable-item" (click)="returnCategory(category.category_id)">
+                        <i class="ph ph-caret-circle-double-up"></i> Devolver
+                      </a>
+                      <a *ngIf="category.status == 1" class="dropdown-item disable-item" (click)="rentCategory(category.category_id)">
+                        <i class="ph ph-caret-circle-double-down"></i> Rentar
+                      </a>
+                    </div>
+                  </div>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+
 <!-- Modal -->
-<div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="exampleModal">
+<div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" >Nueva Película</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"><span aria-hidden="true"></span>
+        <h2 class="modal-title">{{ categoryUpdated == 0? "Nueva": "Actualizar" }} película</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span>
         </button>
       </div>
 
@@ -61,62 +145,5 @@
     </div>
   </div>
 </div>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-
-    <div class="navbar-content container-fluid">
-    <a class="navbar-brand" href="#">Clonbuster</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav me-auto">
-        </ul>
-        <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-    </div>
-</nav>
-
-<div class="body-content">
-
-    <div class="card border-primary mb-3">
-
-        <!-- Table title  -->
-        <div class="card-header border-primary mb-3">
-            <h1>Catálogo </h1>
-        </div>
-        
-        <!-- Table content -->
-        
-        <div class="card-body">
-            <table class="table">
-            <thead>
-                <tr class="table-primary">
-                <th>No.</th>
-                <th>Género</th>
-                <th>Nombre</th>
-                <th>Estatus</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let category of categories; let i = index" >
-                <td>{{ i + 1 }}</td>
-                <td>{{ category.code }}</td>
-                <td>{{ category.category }}</td>
-                <td>{{ category.status == 0 ? "En renta": "Rentada" }}</td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Agrega el botón de agregar película -->
-  <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Agregar Película
-  </button>
 
 </div>

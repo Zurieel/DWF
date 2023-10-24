@@ -15,3 +15,59 @@
     text-align: center;
 }
 
+
+.dropdown{
+    border: none;
+    background-color:transparent;
+}
+
+.dropdown-item{
+    color: black !important;
+    cursor: pointer;
+  }
+  
+.dropdown-item:hover{
+    color: white !important;
+  }
+
+.edit-item{
+    color:blueviolet !important;
+}
+
+.enable-item{
+    color:aqua !important;
+    cursor: pointer;
+}
+
+.disable-item{
+    color:deeppink !important;
+    cursor: pointer;
+}
+
+.icon-text-button{
+    font-size: 14px;
+    margin-right: 4px;
+  }
+  
+.icon-text-ul{
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.icon-menu{
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.icon-menu:hover{
+color: blue;
+}
+
+.td-status-enable{
+    color: aqua;
+}
+
+.td-status-disable{
+    color:deeppink;
+}
+
