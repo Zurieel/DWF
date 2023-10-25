@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Category } from '../../_models/category';
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { CategoryService } from '../../../../category.service';
 
 declare var $: any;
 
@@ -18,6 +19,7 @@ export class CategoryComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private categoryService: CategoryService
   ){}
 
   form = this.formBuilder.group({
@@ -40,63 +42,30 @@ export class CategoryComponent {
 
   }
 
-  onSubmitCreate(){
-
-    this.submitted = true;
-    
-    if(this.form.invalid) return;
-
-    const selectedText = this.form.controls['code'].value!;
-
-    let category = new Category(0, selectedText, this.form.controls['category'].value!, 1);
-    this.categories.push(category);
-
-    $("#modalForm").modal("hide");
-
-    Swal.fire({
-      iconColor:'aqua',
-      position: 'center',
-      icon: 'success',
-      background: '#170229',
-      color: 'aqua',
-      title: '¡Película guardada exitosamente!',
-      showConfirmButton: false,
-      timer: 2000
-    })
-
+  getCategories() {
+    this.categoryService.getCategories().subscribe((data: Category[]) => {
+      this.categories = data;
+    });
   }
 
-  onSubmitUpdate(){
-
-    this.submitted = true;
-
-    if(this.form.invalid) return;
-
-    this.submitted = false;
-
-    for(let category of this.categories){
-      if(category.category_id == this.categoryUpdated){
-        category.category = this.form.controls['category'].value!;
-        category.code = this.form.controls['code'].value!;
-        break;
-      }
+  onSubmitCreate() {
+    if (this.form.valid) {
+      this.categoryService.createCategory(this.form.value).subscribe((response) => {
+      });
+    } else {
+      // errores
     }
+  }
 
-    $("#modalForm").modal("hide");
-
-    Swal.fire({
-      iconColor:'aqua',
-      position: 'center',
-      icon: 'success',
-      background: '#170229',
-      color: 'aqua',
-      title: '¡Película actualizada exitosamente!',
-      showConfirmButton: false,
-      timer: 2000
-    })
-
-    this.categoryUpdated = 0;
-
+  onSubmitUpdate() {
+    if (this.form.valid) {
+      const updatedCategory = { id: this.categoryUpdated, ...this.form.value };
+      this.categoryService.updateCategory(updatedCategory).subscribe((response) => {
+        // Procesa la respuesta después de actualizar la categoría
+      });
+    } else {
+      // errores
+    }
   }
 
   updateCategory(category: Category){
@@ -110,63 +79,16 @@ export class CategoryComponent {
     $("#modalForm").modal("show");
   }
 
-  getCategories() {
-
-    let category1 = new Category(1, "Sci-Fi", "Avatar ", 0);
-    let category2 = new Category(2, "Acción", "Misión Imposible", 1);
-    let category3 = new Category(3, "Terror", "Five Nights at Freddy's", 0);
-    let category4 = new Category(4, "Sci-Fi", "Jurassic Park", 1);
-
-    this.categories.push(category1);
-    this.categories.push(category2);
-    this.categories.push(category3);
-    this.categories.push(category4);
-
-  }
-
   rentCategory(id: number){
-
-    for(let category of this.categories){
-
-      if(category.category_id == id){
-        category.status = 0;
-
-        Swal.fire({
-          iconColor:'aqua',
-          position: 'center',
-          icon: 'success',
-          background: '#170229',
-          color: 'aqua',
-          title: '¡Has rentado '+category.category+" exitosamente!",
-          showConfirmButton: false,
-          timer: 2000
-        })
-        break;
-      }
-    }
-    console.log("SALIR")
+    this.categoryService.enableCategory(id).subscribe((response) => {
+      // Procesa la respuesta después de habilitar la categoría
+    });
   }
 
   returnCategory(id: number){
-
-    for(let category of this.categories){
-
-      if(category.category_id == id){
-        category.status = 1;
-
-        Swal.fire({
-          iconColor:'aqua',
-          position: 'center',
-          icon: 'success',
-          background: '#170229',
-          color: 'aqua',
-          title: '¡Has devuelto '+category.category+" exitosamente!",
-          showConfirmButton: false,
-          timer: 2000
-        })
-        break;
-      }
-    }
+    this.categoryService.disableCategory(id).subscribe((response) => {
+      // Procesa la respuesta después de deshabilitar la categoría
+    });
   }
 
   showModalForm() {
@@ -177,7 +99,4 @@ export class CategoryComponent {
     $("#modalForm").modal("show");
   }
   
-
 }
-
-
