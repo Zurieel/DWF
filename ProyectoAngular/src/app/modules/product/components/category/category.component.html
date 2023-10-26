@@ -70,7 +70,7 @@
                         <i class="ph ph-note-pencil icon-text-ul"></i>Editar
                       </a>
                       <a *ngIf="category.status == 0" class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
-                        <i class="ph ph-plus-circle"></i> Activar
+                        <i class="ph ph-check-circle"></i> Activar
                       </a>
                       <a *ngIf="category.status == 1" class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
                         <i class="ph ph-x-circle"></i> Desactivar
