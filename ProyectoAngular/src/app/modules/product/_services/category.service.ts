@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../_models/category';
 
@@ -7,7 +7,7 @@ import { Category } from '../_models/category';
 })
 export class CategoryService {
 
-  private url = "http://localhost:9090";
+  private url = "http://localhost:8080";
   private route = "/category";
 
   constructor(private http: HttpClient) { }
@@ -24,11 +24,7 @@ export class CategoryService {
     return this.http.delete(this.url + this.route + "/" + id);
   }
 
-  getCategory(id: number) {
-    return this.http.get<Category[]>(this.url + this.route + "/" + id);
-  }
-
-  getCategorys() {
+  getCategories() {
     return this.http.get<Category[]>(this.url + this.route);
   }
 

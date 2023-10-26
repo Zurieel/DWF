@@ -1,9 +1,11 @@
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg" data-bs-theme="light">
 
     <div class="navbar-content container-fluid">
-    <a class="navbar-brand" href="#">Clonbuster</a>
+    <a class="navbar-brand" href="#" style="color: white; font-size:30px; font-family:Impact;">Lucky Aide
+      <i class="ph ph-flower"></i>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,7 +14,7 @@
         </ul>
         <form class="d-flex">
         <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn my-2 my-sm-0" type="submit"><i class="ph ph-magnifying-glass search-menu"></i></button>
         </form>
     </div>
     </div>
@@ -21,34 +23,33 @@
 <div class="body-content">
 
     <!-- Agrega el botón de agregar película -->
-    <button type="button" class="btn btn-outline-secondary" (click)="showModalForm()">
+    <button type="button" class="btn btn-add" (click)="showModalForm()">
       <i class="ph ph-list-plus icon-text-button"></i>
-      Agregar Película
+      Agregar categoría
     </button>
 
     <br><br>
 
-    <div class="card border-primary mb-3">
 
-        <!-- Table title  -->
-        <div class="card-header border-primary mb-3">
-            <h1>Catálogo </h1>
-        </div>
+    <p class="h1-text" style="font-size: 55px; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Categorías</p>
+
+    <div class="card ">
+
+      <div></div>
         
-        <!-- Table content -->
-        
+        <!-- Table content --> 
         <div class="card-body">
-            <table class="table">
+            <table class="table table-hover">
             <thead>
-                <tr class="table-primary">
+                <tr class="table-dark">
                 <th>No.</th>
-                <th>Género</th>
-                <th>Nombre</th>
+                <th>Código</th>
+                <th>Categoría</th>
                 <th>Estatus</th>
                 <th>Más</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-body">
                 <tr *ngFor="let category of categories; let i = index" >
                 <td>{{ i + 1 }}</td>
                 <td>{{ category.code }}</td>
@@ -56,23 +57,23 @@
                 <td>
                   <div class="td-status"
                   [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
-                    {{ category.status == 0 ? "Rentada" : "En renta" }}
+                    {{ category.status == 0 ? "Desactivada" : "Activada" }}
                   </div>
                 </td>
                 <td>
                   <div class="dropdown">
-                    <button class="btn btn-primary dropdown" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-dropdown btn-dark" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="ph ph-dots-three-circle icon-menu"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item edit-item" (click)="updateCategory(category)">
                         <i class="ph ph-note-pencil icon-text-ul"></i>Editar
                       </a>
-                      <a *ngIf="category.status == 0" class="dropdown-item enable-item" (click)="returnCategory(category.category_id)">
-                        <i class="ph ph-caret-circle-double-up"></i> Devolver
+                      <a *ngIf="category.status == 0" class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
+                        <i class="ph ph-plus-circle"></i> Activar
                       </a>
-                      <a *ngIf="category.status == 1" class="dropdown-item disable-item" (click)="rentCategory(category.category_id)">
-                        <i class="ph ph-caret-circle-double-down"></i> Rentar
+                      <a *ngIf="category.status == 1" class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
+                        <i class="ph ph-x-circle"></i> Desactivar
                       </a>
                     </div>
                   </div>
@@ -88,7 +89,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">{{ categoryUpdated == 0? "Nueva": "Actualizar" }} película</h2>
+        <h2 class="modal-title">{{ categoryUpdated == 0? "Nueva": "Actualizar" }} categoría</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span>
         </button>
       </div>
@@ -100,19 +101,19 @@
 
           <!-- code  -->
           <div class="form-group">
-            <label for="code" class="form-label mt-4">Género <span class="text-danger">*</span> </label>
-            <select class="form-select" formControlName="code" [ngClass]="{'is-invalid': form.controls['code'].errors && submitted}">
+            <label for="code" class="form-label mt-4">Código <span class="text-danger">*</span> </label>
+            <select class="form-select form-edit" formControlName="code" [ngClass]="{'is-invalid': form.controls['code'].errors && submitted}">
               <option value="" disabled selected>Seleccione una opción</option>
-              <option>Acción</option>
-              <option>Animación</option>
-              <option>Aventura</option>
-              <option>Comedia</option>
-              <option>Drama</option>
-              <option>Musical</option>
-              <option>Romance</option>
-              <option>Sci-Fi</option>
-              <option>Terror</option>
-              <option>Thriller</option>
+              <option>041</option>
+              <option>042</option>
+              <option>043</option>
+              <option>044</option>
+              <option>045</option>
+              <option>046</option>
+              <option>047</option>
+              <option>048</option>
+              <option>049</option>
+              <option>050</option>
             </select>
             <div *ngIf="form.controls['code'].errors && submitted">
               <small class="text-danger">Por favor, seleccione una opción.</small>
@@ -124,7 +125,7 @@
           <!-- category  -->
           <div class="form-group">
             <label for="category">Nombre <span class="text-danger">*</span> </label>
-            <input type="text" class="form-control" formControlName="category" id="category" placeholder="Ingrese el nombre de la película" 
+            <input type="text" class="form-control form-edit" formControlName="category" id="category" placeholder="Ingrese el nombre de la categoría" 
               [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}" >
             <div *ngIf="form.controls['category'].errors && submitted">
               <small class="text-danger">Por favor, ingrese un nombre válido.</small>
@@ -135,7 +136,7 @@
 
           <!-- button  -->
           <div class="form-button">
-            <button type="submit" class="btn btn-secondary btn-form">Guardar</button>
+            <button type="submit" class="btn btn-form">Guardar</button>
           </div>
 
         </form>
