@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Category } from '../../_models/category';
 import { FormBuilder, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
+import { CategoryService } from '../../_services/category.service';
 
 declare var $: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-category',
@@ -18,6 +19,7 @@ export class CategoryComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private categoryService: CategoryService
   ){}
 
   form = this.formBuilder.group({
@@ -32,71 +34,97 @@ export class CategoryComponent {
   }
 
   ngOnSubmit(){
+    this.submitted = true;
+    if(this.form.invalid) return;
+    this.submitted = false;
+
     if(this.categoryUpdated == 0){
       this.onSubmitCreate();
     }else{
       this.onSubmitUpdate();
     }
-
   }
 
-  onSubmitCreate(){
-
-    this.submitted = true;
-    
-    if(this.form.invalid) return;
-
-    const selectedText = this.form.controls['code'].value!;
-
-    let category = new Category(0, selectedText, this.form.controls['category'].value!, 1);
-    this.categories.push(category);
-
-    $("#modalForm").modal("hide");
-
-    Swal.fire({
-      iconColor:'aqua',
-      position: 'center',
-      icon: 'success',
-      background: '#170229',
-      color: 'aqua',
-      title: '¡Película guardada exitosamente!',
-      showConfirmButton: false,
-      timer: 2000
-    })
-
-  }
-
-  onSubmitUpdate(){
-
-    this.submitted = true;
-
-    if(this.form.invalid) return;
-
-    this.submitted = false;
-
-    for(let category of this.categories){
-      if(category.category_id == this.categoryUpdated){
-        category.category = this.form.controls['category'].value!;
-        category.code = this.form.controls['code'].value!;
-        break;
+  getCategories() {
+    this.categoryService.getCategories().subscribe(
+      res => {
+        this.categories = res;
+      },
+      err =>{
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          showConfirmButton: false,
+          title: err.error.message,
+          background: '#292A2D',
+          timer: 2000
+        });
       }
-    }
+    );
+  }
 
-    $("#modalForm").modal("hide");
+  onSubmitCreate() {
+      this.categoryService.createCategory(this.form.value).subscribe(
+        res => {
+          // muestra mensaje de confirmación
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '¡Categoría registrada exitosamente!',
+            background: '#292A2D',
+            showConfirmButton: false,
+            timer: 2000
+          });
 
-    Swal.fire({
-      iconColor:'aqua',
-      position: 'center',
-      icon: 'success',
-      background: '#170229',
-      color: 'aqua',
-      title: '¡Película actualizada exitosamente!',
-      showConfirmButton: false,
-      timer: 2000
-    })
+          this.getCategories();
 
-    this.categoryUpdated = 0;
+          $("#modalForm").modal("hide");
+      },
+      
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          showConfirmButton: false,
+          title: err.error.message,
+          background: '#292A2D',
+          timer: 2000
+        });
+      }
+    );
+  }
 
+  onSubmitUpdate() {
+    this.categoryService.updateCategory(this.form.value, this.categoryUpdated).subscribe(
+      res => {
+        // muestra mensaje de confirmación
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: '¡Categoría actualizada exitosamente!',
+          background: '#292A2D',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      
+      this.getCategories();
+
+      $("#modalForm").modal("hide"); // oculta el modal de registro
+    },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          showConfirmButton: false,
+          title: err.error.message,
+          background: '#292A2D',
+          timer: 2000
+        });
+      }
+    );
   }
 
   updateCategory(category: Category){
@@ -110,63 +138,62 @@ export class CategoryComponent {
     $("#modalForm").modal("show");
   }
 
-  getCategories() {
-
-    let category1 = new Category(1, "Sci-Fi", "Avatar ", 0);
-    let category2 = new Category(2, "Acción", "Misión Imposible", 1);
-    let category3 = new Category(3, "Terror", "Five Nights at Freddy's", 0);
-    let category4 = new Category(4, "Sci-Fi", "Jurassic Park", 1);
-
-    this.categories.push(category1);
-    this.categories.push(category2);
-    this.categories.push(category3);
-    this.categories.push(category4);
-
-  }
-
-  rentCategory(id: number){
-
-    for(let category of this.categories){
-
-      if(category.category_id == id){
-        category.status = 0;
-
+  enableCategory(id: number){
+    this.categoryService.enableCategory(id).subscribe(
+      res => {
+        // muestra mensaje de confirmación
         Swal.fire({
-          iconColor:'aqua',
           position: 'center',
           icon: 'success',
-          background: '#170229',
-          color: 'aqua',
-          title: '¡Has rentado '+category.category+" exitosamente!",
+          title: '¡Categoría activada exitosamente!',
+          background: '#292A2D',
           showConfirmButton: false,
           timer: 2000
-        })
-        break;
-      }
-    }
-    console.log("SALIR")
-  }
+        });
 
-  returnCategory(id: number){
-
-    for(let category of this.categories){
-
-      if(category.category_id == id){
-        category.status = 1;
-
+        this.getCategories(); // consulta regiones con los cambios realizados
+      },
+      err => {
+        // muestra mensaje de error
         Swal.fire({
-          iconColor:'aqua',
           position: 'center',
+          icon: 'error',
+          showConfirmButton: false,
+          title: err.error.message,
+          background: '#292A2D',
+          timer: 2000
+        });
+      }
+    );
+  }
+      
+  disableCategory(id: number){
+    this.categoryService.disableCategory(id).subscribe(
+      res => {
+        // muestra mensaje de confirmación
+        Swal.fire({
+          position:'center',
           icon: 'success',
-          background: '#170229',
-          color: 'aqua',
-          title: '¡Has devuelto '+category.category+" exitosamente!",
+          title: '¡Categoría desactivada exitosamente!',
+          background: '#292A2D',
           showConfirmButton: false,
           timer: 2000
-        })
-        break;
+        });
+
+        this.getCategories(); // consulta regiones con los cambios realizados
+      },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          showConfirmButton: false,
+          title: err.error.message,
+          background: '#292A2D',
+          timer: 2000
+        });
       }
-    }
+    );
   }
 
   showModalForm() {
@@ -177,7 +204,4 @@ export class CategoryComponent {
     $("#modalForm").modal("show");
   }
   
-
 }
-
-
