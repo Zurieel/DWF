@@ -31,21 +31,53 @@
         Editar producto
     </button>
 
+    <br><br>
+
     <div class="card card-primary">
         
-        <div class="card card-image">  
-            <div class="edit-product-image text-center">
-                <label for="uploadImage" class="upload-image">
+        <div class="edit-product-images text-center">
+            <label for="uploadImage" class="upload-image">
                 <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
-                <i class="ph ph-pencil-circle icon-text-ul" style="font-size: 20px;"></i>
+                <i class="ph ph-file-image icon-text" style="font-size: 18px;"></i>
                 Añadir imagen
-                </label>
-            </div>
-            <!-- Mostrar imágenes aquí -->
-          <div *ngFor="let productImage of productImages">
-            <img [src]="productImage.image" alt="Imagen del producto">
-          </div>
+            </label>
         </div>
+
+        <div class="card card-image">  
+
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-interval="1000">
+                <div class="carousel-inner">
+                    <ng-container *ngIf="productImages.length > 0; else defaultImage">
+                        <div class="carousel-item" *ngFor="let productImage of productImages; let i = index" [class.active]="i === 0">
+                            <img [src]="productImage.image" class="d-block w-100" alt="Image {{i + 1}}">
+                            <div class="edit-product-image text-center">
+                                <button type="button" class="btn-delete-image" (click)="deleteImage(productImage.product_image_id)">
+                                    <i class="ph ph-trash icon-text"style="font-size: 18px;"></i>
+                                    Eliminar imagen
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <ng-template #defaultImage>
+                <div class="carousel-item active">
+                    <img src="assets/imagenes/productImageNull.jpg" class="d-block w-100" alt="Imagen Predeterminada">
+                </div>
+            </ng-template>
+
+        </div>
+
+        
 
         <div class="card card-details">
             
@@ -78,25 +110,6 @@
         </div>
 
     </div>
-
-    <!-- <div class="card-header">
-        <div class="row">
-        <div class="col-md">
-            <span class="btn-return" (click)="redirect(['product'])">
-            <i class="ph ph-arrow-circle-left icon-text-button"></i>
-            Regresar
-            </span>
-        </div>
-    
-        <div class="col-md">
-            <span class="edit-product" (click)="updateProduct()">
-            <i class="ph ph-pencil-circle icon-text-ul"></i>
-            Editar producto
-            </span>
-        </div>
-        </div>
-    </div>
-    <br> -->
 
     <!-- Modal -->
     <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
@@ -191,7 +204,7 @@
                     </div>
                   </div>
               </div>
-              
+
               <br><br><br>
 
               <!-- description  -->

@@ -26,7 +26,7 @@ export class ProductImageComponent {
   gtin: any | string = ""; // gtin del producto consultado
 
   productImages: ProductImage[] = [];
-
+  
   categories: Category[] = []; // lista de categorias
   category: any | Category = new Category(); // datos de la categoria del producto
 
@@ -209,6 +209,32 @@ export class ProductImageComponent {
       }
     );
   }
+
+  deleteImage(productId: number) {
+    this.ProductImageService.deleteProductImage(productId).subscribe(
+      (response) => {
+        // Image has been successfully deleted.
+        console.log('Imagen eliminada:', response);
+        
+        // Remove the image from the carousel
+        this.productImages.splice(this.productImages.findIndex((image) => image.product_image_id === productId), 1);
+        
+        this.getProduct();
+      },
+      err => {
+        // Muestra mensaje de error
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          toast: true,
+          showConfirmButton: false,
+          text: err.error.message,
+          background: '#F8E8F8',
+          timer: 2000
+        });
+      }
+    );
+  }
   
   // catalogues
 
@@ -230,7 +256,6 @@ export class ProductImageComponent {
       }
     );
   }
-
   
   // auxiliary functions
 

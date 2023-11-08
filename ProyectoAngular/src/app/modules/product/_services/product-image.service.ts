@@ -16,8 +16,9 @@ export class ProductImageService {
     return this.http.post(this.url + this.route, product_image);
   }
   
-  deleteProductImage(id: number) {
-    return this.http.delete(this.url + this.route + "/" + id);
+  deleteProductImage(productImageId: number){
+    const url = `${this.url}/${this.route}/${productImageId}`;
+    return this.http.delete(url);
   }
   
   getProductImages(product_id: number) {
