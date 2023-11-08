@@ -59,12 +59,11 @@ export class ProductImageComponent {
       this.getProduct();
     } else {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'error',
-        toast: true,
         showConfirmButton: false,
-        text: 'GTIN de producto inválido',
-        background: '#F8E8F8',
+        title: 'GTIN de producto inválido',
+        background: '#292A2D',
         timer: 2000
       });
     }
@@ -80,12 +79,11 @@ export class ProductImageComponent {
       (err) => {
         // muestra mensaje de error
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          toast: true,
           showConfirmButton: false,
-          text: err.error.message,
-          background: '#F8E8F8',
+          title: err.error.message,
+          background: '#292A2D',
           timer: 2000
         });
       }
@@ -102,11 +100,10 @@ export class ProductImageComponent {
       res => {
         // muestra mensaje de confirmación
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          toast: true,
-          text: 'El producto ha sido actualizado',
-          background: '#E8F8F8',
+          title: '¡Producto actualizado exitosamente!',
+          background: '#292A2D',
           showConfirmButton: false,
           timer: 2000
         });
@@ -130,12 +127,11 @@ export class ProductImageComponent {
       err => {
         // muestra mensaje de error
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          toast: true,
           showConfirmButton: false,
-          text: err.error.message,
-          background: '#F8E8F8',
+          title: err.error.message,
+          background: '#292A2D',
           timer: 2000
         });
       }
@@ -164,18 +160,17 @@ export class ProductImageComponent {
   // product image
   updateProductImage(image: string){
     let productImage: ProductImage = new ProductImage();
-    productImage.product_image_id = this.productImage.product_image_id; // Asigna el product_id del producto actual
+    productImage.product_id = this.product.product_id; // Asigna el product_id del producto actual
     productImage.image = image;
   
     this.ProductImageService.uploadProductImage(productImage).subscribe(
       res => {
         // Muestra mensaje de confirmación
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          toast: true,
-          text: 'La imagen ha sido actualizada',
-          background: '#E8F8F8',
+          title: '¡Imagen actualizada exitoamente!',
+          background: '#292A2D',
           showConfirmButton: false,
           timer: 2000
         });
@@ -187,12 +182,11 @@ export class ProductImageComponent {
       err => {
         // Muestra mensaje de error
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          toast: true,
           showConfirmButton: false,
-          text: err.error.message,
-          background: '#F8E8F8',
+          title: err.error.message,
+          background: '#292A2D',
           timer: 2000
         });
       }
@@ -209,12 +203,11 @@ export class ProductImageComponent {
       err => {
         // muestra mensaje de error
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          toast: true,
           showConfirmButton: false,
-          text: err.error.message,
-          background: '#F8E8F8',
+          title: err.error.message,
+          background: '#292A2D',
           timer: 2000
         });
       }
@@ -232,12 +225,11 @@ export class ProductImageComponent {
       err => {
         // muestra mensaje de error
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          toast: true,
           showConfirmButton: false,
-          text: err.error.message,
-          background: '#F8E8F8',
+          title: err.error.message,
+          background: '#292A2D',
           timer: 2000
         });
       }

@@ -4,12 +4,12 @@
     margin-top: 50px;
 }
 
-.btn-add{
+.btn{
     background-color: #43a02c;
     color: white;
 }
 
-.btn-add:hover{
+.btn:hover{
     background-color: #378025;
 }
 
@@ -17,13 +17,8 @@
     background-color: #343A40;
 }
 
-.btn-form{
-    background-color: #43a02c;
-    color: white;
-}
-
-.btn-form:hover{
-    background-color: #378025;
+.btn-dropdown:hover{
+    background-color: #343A40;
 }
 
 .d-flex .btn{
