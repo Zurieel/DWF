@@ -23,5 +23,10 @@ export class ProductImageService {
   getProductImages(product_id: number) {
     return this.http.get<ProductImage[]>(this.url + this.route + "/" + product_id);
   }
+
+  uploadProductImage(productImage: ProductImage) {
+    return this.http.post(`${this.url}${this.route}`, productImage);
+  }
+
 }
 

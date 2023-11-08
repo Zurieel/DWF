@@ -22,6 +22,10 @@ export class CategoryService {
 
   disableCategory(id: number) {
     return this.http.delete(this.url + this.route + "/" + id);
+  } 
+
+  getCategory(id: number) {
+    return this.http.get<Category[]>(this.url + this.route + "/" + id);
   }
 
   getCategories() {

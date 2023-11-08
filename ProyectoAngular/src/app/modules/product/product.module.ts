@@ -11,8 +11,6 @@ import { ProductImageComponent } from './components/product-image/product-image.
 
 import { NgxPhotoEditorModule } from "ngx-photo-editor";
 
-
-
 @NgModule({
   declarations: [
     CategoryComponent,

@@ -17,17 +17,17 @@ export class CategoryComponent {
   categories: Category[] = [];
   categoryUpdated: number = 0;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private categoryService: CategoryService
-  ){}
-
   form = this.formBuilder.group({
     code: ["", [Validators.required]],
     category: ["", [Validators.required]],
   });
 
   submitted = false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService
+  ){}
 
   ngOnInit(){
     this.getCategories();
