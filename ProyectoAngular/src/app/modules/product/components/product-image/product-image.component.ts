@@ -25,7 +25,7 @@ export class ProductImageComponent {
   product: any | Product = new Product(); // producto consultado
   gtin: any | string = ""; // gtin del producto consultado
 
-  productImage: any | ProductImage = new ProductImage
+  productImages: ProductImage[] = [];
 
   categories: Category[] = []; // lista de categorias
   category: any | Category = new Category(); // datos de la categoria del producto
@@ -75,6 +75,7 @@ export class ProductImageComponent {
         this.product = res; // asigna la respuesta de la API a la variable de producto
         this.getCategory(this.product.category_id);
         console.log('Producto obtenido:', this.product);
+        this.visualizeImage(this.product.product_id);
       },
       (err) => {
         // muestra mensaje de error
@@ -189,6 +190,22 @@ export class ProductImageComponent {
           background: '#292A2D',
           timer: 2000
         });
+      }
+    );
+  }
+
+  visualizeImage(product_id: number) {
+    this.ProductImageService.getProductImage(product_id).subscribe(
+      (productImages: ProductImage[]) => {
+        productImages.forEach(image => {
+          // Construye la URL completa de la imagen
+          image.image = `assets/imagenes/${image.image}`;
+        });
+        this.productImages = productImages;
+        console.log('Imágenes del producto:', productImages);
+      },
+      (err) => {
+        console.error('Error al obtener imágenes del producto:', err);
       }
     );
   }

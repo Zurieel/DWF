@@ -34,9 +34,6 @@
     <div class="card card-primary">
         
         <div class="card card-image">  
-            <div class="card-body-customer text-center">
-                <img [src]="productImage.image" alt="..." class="img-thumbnail product-image">
-            </div> 
             <div class="edit-product-image text-center">
                 <label for="uploadImage" class="upload-image">
                 <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
@@ -44,6 +41,10 @@
                 Añadir imagen
                 </label>
             </div>
+            <!-- Mostrar imágenes aquí -->
+          <div *ngFor="let productImage of productImages">
+            <img [src]="productImage.image" alt="Imagen del producto">
+          </div>
         </div>
 
         <div class="card card-details">

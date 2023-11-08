@@ -24,6 +24,11 @@ export class ProductImageService {
     return this.http.get<ProductImage[]>(this.url + this.route + "/" + product_id);
   }
 
+  getProductImage(productId: number) {
+    const apiUrl = `${this.url}/${this.route}/${productId}`;
+    return this.http.get<ProductImage[]>(apiUrl); 
+  }
+
   uploadProductImage(productImage: ProductImage) {
     return this.http.post(`${this.url}${this.route}`, productImage);
   }
