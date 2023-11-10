@@ -1,0 +1,216 @@
+<head>
+    <link rel="stylesheet" href="/home/zurieel/Zuri/CC/Sexto/Front-end/ProyectoAngular/src/app/app.component.css">
+</head>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg" data-bs-theme="light">
+
+    <div class="navbar-content container-fluid">
+    <a class="navbar-brand" href="#" style="color: white; font-size:30px; font-family:Impact;">Lucky Aide
+      <i class="fa-solid fa-clover"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+        </ul>
+        <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Search">
+        <button class="btn my-2 my-sm-0" type="submit"><i class="ph ph-magnifying-glass search-menu" style="color: white;"></i></button>
+        </form>
+    </div>
+    </div>
+</nav>
+
+<div class="body-content">
+
+    <!-- Agrega el botón de agregar película -->
+    <button type="button" class="btn btn-add" (click)="showModalForm()">
+      <i class="ph ph-list-plus icon-text-button"></i>
+      Agregar producto
+    </button>
+
+    <br><br>
+
+
+    <p class="h1-text" style="font-size: 55px; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Productos</p>
+
+    <div class="card ">
+
+      <div></div>
+
+        <!-- Table content --> 
+        <div class="card-body">
+            <table class="table table-hover">
+            <thead>
+                <tr class="table-dark">
+                <th>No.</th>
+                <th>GTIN</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Estatus</th>
+                <th>Más</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr *ngFor="let product of products; let i = index" >
+                <td>{{ i + 1 }}</td>
+                <td>{{ product.gtin }}</td>
+                <td>{{ product.product }}</td>
+                <td>{{ product.price | currency: 'USD' }}</td>
+                <td>
+                  <div class="td-status"
+                  [ngClass]="{'td-status-enable': product.status == 1, 'td-status-disable': product.status == 0}" >
+                    {{ product.status == 0 ? "Inactivo" : "Activo" }}
+                  </div>
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-dropdown btn-dark" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="ph ph-dots-three-circle icon-menu"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item edit-item" (click)="showProduct(product.gtin)">
+                            <i class="ph ph-circles-three"></i> Ver detalles
+                          </a>
+                          <a *ngIf="product.status == 0" class="dropdown-item enable-item" (click)="enableProduct(product.product_id)">
+                            <i class="ph ph-check-circle"></i> Activar
+                          </a>
+                          <a *ngIf="product.status == 1" class="dropdown-item disable-item" (click)="disableProduct(product.product_id)">
+                            <i class="ph ph-x-circle"></i> Desactivar
+                          </a>
+                        </div>
+                      </div>
+                    </td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+      <!-- Modal -->
+      <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title">Nuevo producto</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span>
+                </button>
+              </div>
+  
+        <div class="modal-body">
+  
+          <!-- form  -->
+          <form [formGroup]="form" (ngSubmit)="ngOnSubmit()">
+  
+            
+            <div class="row">
+
+                <!-- gtin  -->
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="gtin">GTIN <span class="text-danger">*</span> </label>
+                        <input type="text" class="form-control form-edit" formControlName="gtin" id="gtin" placeholder="Código GTIN del producto..." 
+                            [ngClass]="{'is-invalid': form.controls['gtin'].errors && submitted}" >
+                        <div *ngIf="form.controls['gtin'].errors && submitted">
+                            <small class="text-danger">Por favor, ingrese un GTIN válido</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- product  -->
+      
+                <div class="col-md-6"> 
+                    <div class="form-group">
+                    <label for="product">Producto <span class="text-danger">*</span> </label>
+                    <input type="text" class="form-control form-edit" formControlName="product" id="product" placeholder="Nombre del producto..." 
+                        [ngClass]="{'is-invalid': form.controls['product'].errors && submitted}" >
+                    <div *ngIf="form.controls['product'].errors && submitted">
+                        <small class="text-danger">Por favor, ingrese un nombre de producto válido</small>
+                    </div>
+                    </div>
+                </div>
+                
+                <br><br><br>
+    
+                <!-- price  -->
+      
+                <div class="col-md-6"> 
+                    <div class="form-group">
+                    <label for="price">Precio <span class="text-danger">*</span> </label>
+                    <input type="text" class="form-control form-edit" formControlName="price" id="price" placeholder="Precio del producto..." 
+                        [ngClass]="{'is-invalid': form.controls['price'].errors && submitted}" >
+                    <div *ngIf="form.controls['price'].errors && submitted">
+                        <small class="text-danger">Por favor, ingrese un precio válido</small>
+                    </div>
+                    </div>
+                </div>
+                
+                <br>
+
+                <!-- stock  -->
+      
+                <div class="col-md-6"> 
+                    <div class="form-group">
+                    <label for="stock">Cantidad de productos <span class="text-danger">*</span> </label>
+                    <input type="text" class="form-control form-edit" formControlName="stock" id="stock" placeholder="Número de stock del producto..." 
+                        [ngClass]="{'is-invalid': form.controls['stock'].errors && submitted}" >
+                    <div *ngIf="form.controls['stock'].errors && submitted">
+                        <small class="text-danger">Por favor, ingrese una cantidad de productos válida</small>
+                    </div>
+                    </div>
+                </div>  
+                
+                <br><br><br>
+
+                <!-- category_id  -->
+      
+                <div class="col-md-6"> 
+                    <div class="form-group">
+                      <label for="category_id">Categoría <span class="text-danger">*</span> </label>
+                      <select class="form-select form-edit" formControlName="category_id" id="category_id"
+                          [ngClass]="{'is-invalid': form.controls['category_id'].errors && submitted}">
+                          <option [ngValue]=null hidden>Seleccione una categoría</option>
+                          <ng-container *ngFor="let category of categories" >
+                              <option *ngIf="category.status == 1" [ngValue]="category.category_id">{{ category.category }}</option>
+                          </ng-container>
+                      </select>
+                      <div *ngIf="form.controls['category_id'].errors && submitted">
+                          <small class="text-danger">Por favor, seleccione una categoría</small>
+                      </div>
+                    </div>
+                </div>
+                
+                <br><br><br>
+
+                <!-- description  -->
+      
+                <div class="form-group">
+                  <label for="description">Descripción <span class="text-danger">*</span> </label>
+                  <textarea rows="2" class="form-control form-edit" formControlName="description" id="description" placeholder="Descripción del producto..." 
+                    [ngClass]="{'is-invalid': form.controls['description'].errors && submitted}" >
+                  </textarea>
+                  <div *ngIf="form.controls['description'].errors && submitted">
+                    <small class="text-danger">Por favor, ingrese una descripción válida</small>
+                  </div>
+                </div>
+            </div>
+            
+            <br>
+
+            <!-- button  -->
+            <div class="form-button">
+                <button type="submit" class="btn btn-form">Guardar</button>
+            </div>
+  
+          </form>
+  
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  </div>

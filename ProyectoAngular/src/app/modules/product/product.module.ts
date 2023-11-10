@@ -1,13 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoryComponent } from './components/category/category.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { CategoryComponent } from './components/category/category.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductImageComponent } from './components/product-image/product-image.component';
+
+import { NgxPhotoEditorModule } from "ngx-photo-editor";
+
 @NgModule({
   declarations: [
-    CategoryComponent
+    CategoryComponent,
+    ProductComponent,
+    ProductImageComponent,
   ],
   imports: [
     CommonModule,
@@ -15,9 +23,12 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
+    NgxPhotoEditorModule,
   ],
   exports: [
     CategoryComponent,
+    ProductComponent,
+    ProductImageComponent
   ]
 })
 

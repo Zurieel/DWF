@@ -14,7 +14,7 @@
         </ul>
         <form class="d-flex">
         <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn my-2 my-sm-0" type="submit"><i class="ph ph-magnifying-glass search-menu"></i></button>
+        <button class="btn my-2 my-sm-0" type="submit"><i class="ph ph-magnifying-glass search-menu" style="color: white;"></i></button>
         </form>
     </div>
     </div>
@@ -114,6 +114,16 @@
               <option>048</option>
               <option>049</option>
               <option>050</option>
+              <option>051</option>
+              <option>052</option>
+              <option>053</option>
+              <option>054</option>
+              <option>055</option>
+              <option>056</option>
+              <option>057</option>
+              <option>058</option>
+              <option>059</option>
+              <option>060</option>
             </select>
             <div *ngIf="form.controls['code'].errors && submitted">
               <small class="text-danger">Por favor, seleccione una opción.</small>
@@ -125,7 +135,7 @@
           <!-- category  -->
           <div class="form-group">
             <label for="category">Nombre <span class="text-danger">*</span> </label>
-            <input type="text" class="form-control form-edit" formControlName="category" id="category" placeholder="Ingrese el nombre de la categoría" 
+            <input type="text" class="form-control form-edit" formControlName="category" id="category" placeholder="Nombre de la categoría..." 
               [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}" >
             <div *ngIf="form.controls['category'].errors && submitted">
               <small class="text-danger">Por favor, ingrese un nombre válido.</small>
