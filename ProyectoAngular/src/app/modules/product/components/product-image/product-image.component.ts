@@ -30,6 +30,8 @@ export class ProductImageComponent {
   categories: Category[] = []; // lista de categorias
   category: any | Category = new Category(); // datos de la categoria del producto
 
+  quantity: number = 1;
+
   // formulario de actualización
   form = this.formBuilder.group({
     product: ["", [Validators.required]],
@@ -170,7 +172,7 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: '¡Imagen actualizada exitoamente!',
+          title: '¡Imagen actualizada exitosamente!',
           background: '#292A2D',
           showConfirmButton: false,
           timer: 2000
@@ -293,5 +295,23 @@ export class ProductImageComponent {
   redirect(url: string[]){
     this.router.navigate(url);
   }
+
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
+  increaseQuantity(): void {
+    this.quantity++;
+  }
+
+  updateQuantity(value: string): void {
+    const parsedValue = parseInt(value, 10);
+    if (!isNaN(parsedValue) && parsedValue >= 1) {
+      this.quantity = parsedValue;
+    }
+  }
+
 }
 

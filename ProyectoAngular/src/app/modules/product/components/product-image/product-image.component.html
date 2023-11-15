@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg" data-bs-theme="light">
+<nav class="navbar navbar-expand-md" data-bs-theme="light">
 
     <div class="navbar-content container-fluid">
     <a class="navbar-brand" href="#" style="color: white; font-size:30px; font-family:Impact;">Lucky Aide
@@ -19,97 +19,136 @@
     </div>
 </nav>
 
-<div class="body-content">
+<div class="container-fluid body-content">
 
-    <button type="button" class="btn btn-back" (click)="redirect(['product'])">
-        <i class="ph ph-arrow-circle-left icon-text-button"></i>
-        Regresar
-    </button>
-    
-    <button type="button" class="btn btn-edit" (click)="updateProduct()">
-        <i class="ph ph-pencil-circle icon-text-button"></i>
-        Editar producto
-    </button>
 
-    <br><br>
-
-    <div class="card card-primary">
+<div class="card-header">
+    <div class="row">
+        <div class="col-md-8">
+            <span class="btn btn-back" (click)="redirect(['product'])">
+                <i class="ph ph-arrow-circle-left icon-text-button"></i>
+                Regresar
+            </span>
+        </div>
         
-        <div class="edit-product-images text-center">
+        <div class="col-md">
+            <span class="btn btn-edit" (click)="updateProduct()">
+                <i class="ph ph-note-pencil icon-text-button"></i>
+                Editar producto
+            </span>
+        </div>
+
+        <div class="col-md">
+        <div class="btn text-center">
             <label for="uploadImage" class="upload-image">
                 <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
-                <i class="ph ph-file-image icon-text" style="font-size: 18px;"></i>
+                <i class="ph ph-file-image icon-text"></i>
                 Añadir imagen
             </label>
         </div>
-
-        <div class="card card-image">  
-
-            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-interval="1000">
-                <div class="carousel-inner">
-                    <ng-container *ngIf="productImages.length > 0; else defaultImage">
-                        <div class="carousel-item" *ngFor="let productImage of productImages; let i = index" [class.active]="i === 0">
-                            <img [src]="productImage.image" class="d-block w-100" alt="Image {{i + 1}}">
-                            <div class="edit-product-image text-center">
-                                <button type="button" class="btn-delete-image" (click)="deleteImage(productImage.product_image_id)">
-                                    <i class="ph ph-trash icon-text"style="font-size: 18px;"></i>
-                                    Eliminar imagen
-                                </button>
-                            </div>
-                        </div>
-                    </ng-container>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
-            <ng-template #defaultImage>
-                <div class="carousel-item active">
-                    <img src="assets/imagenes/productImageNull.jpg" class="d-block w-100" alt="Imagen Predeterminada">
-                </div>
-            </ng-template>
-
         </div>
-
-        
-
-        <div class="card card-details">
-            
-            <div class="card-header">{{ product.product }}</div>
-
-            <div class="card-body">
-                <div class="card card-description section">
-                    <h4 class="subtitle sub-description"> DESCRIPCION:</h4>
-                    <p class="sub-description">{{ product.description }}</p>
-                </div>
-                <br>
-
-                <div class="card card-price details-content section">
-                    <h5 class="subtitle">PRECIO</h5>
-                    ${{ product.price }}
-                </div>
-
-                <div class="card card-stock details-content section">
-                    <h5 class="subtitle">STOCK</h5>
-                    {{ product.stock }}
-                </div>
-
-                <div class="card card-gtin details-content section">
-                    <h5 class="subtitle">GTIN</h5>
-                    {{ product.gtin }}
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
+</div>
+
+<br>
+
+<div class="card-body">
+    <div class="row principal">
+
+        <!-- customer image  -->
+        <div class="col-md-5">
+            <div class="card card-image">
+                <div class="">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-interval="1000">
+                        <div class="carousel-inner">
+                            <ng-container *ngIf="productImages.length > 0; else defaultImage">
+                                <div class="carousel-item" *ngFor="let productImage of productImages; let i = index" [class.active]="i === 0">
+                                    <img [src]="productImage.image" class="d-block w-100" alt="Image {{i + 1}}">
+                                    <div class="delete-product-image text-center">
+                                        <button type="button" class="btn-delete-image" (click)="deleteImage(productImage.product_image_id)">
+                                            <i class="ph ph-trash icon-text"style="font-size: 18px;"></i>
+                                            Eliminar imagen
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #defaultImage>
+            <div class="carousel-item active">
+                <img src="assets/imagenes/productImageNull.jpg" class="d-block w-100" alt="Imagen Predeterminada">
+            </div>
+        </ng-template>
+    
+
+        <!-- customer data  -->
+        <div class="col-md-7">
+            <div class="card card-body-product">
+                    <table class="table">
+                        <thead class="product-title">
+                            <th class="">{{ product.product }}</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <div class = "row-md">
+                                    <h5 class="description">{{ product.description }}</h5>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class = "row-md">
+                                    <td class="col-md gtin">Código de Producto: {{ product.gtin }}</td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class = "row-md">
+                                    <td class="col-md envio"><i class="ph ph-truck"></i> Envío gratis a todo el país</td> 
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class = "row-md">
+                                    <td class="col-md price">${{ product.price }}</td>  
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class = "row-md quantity">Cantidad
+                                    <td class="col-md quantity-btns">
+                                        <button class="btn quantity-btn" (click)="decreaseQuantity()">-</button>
+                                        <input class="quantity-btn quantity-input" id="quantity-display" type="text" [(ngModel)]="quantity" />
+                                        <button class="btn quantity-btn" (click)="increaseQuantity()">+</button>
+                                    </td> 
+                                </div>
+                            </tr>
+                            <tr>
+                                <td class="col-md buy-btns">
+                                    <button class="btn buy-btn"><i class="ph ph-wallet"></i> Comprar ahora</button>
+                                    <button class="btn buy-btn"><i class="ph ph-shopping-cart"></i> Agregar al carrito</button>
+                                </td>   
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    
+    </div>
+</div>
+
+</div>
 
     <!-- Modal -->
     <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">

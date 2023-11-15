@@ -1,6 +1,6 @@
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg" data-bs-theme="light">
+<nav class="navbar navbar-expand-md" data-bs-theme="light">
 
     <div class="navbar-content container-fluid">
     <a class="navbar-brand" href="#" style="color: white; font-size:30px; font-family:Impact;">Lucky Aide
@@ -20,7 +20,7 @@
     </div>
 </nav>
 
-<div class="body-content">
+<div class="container-fluid body-content">
 
     <!-- Agrega el botón de agregar película -->
     <button type="button" class="btn btn-add" (click)="showModalForm()">
@@ -39,6 +39,7 @@
         
         <!-- Table content --> 
         <div class="card-body">
+          <div class="table-responsive">
             <table class="table table-hover">
             <thead>
                 <tr class="table-dark">
@@ -81,6 +82,7 @@
                 </tr>
             </tbody>
             </table>
+          </div>
         </div>
     </div>
 

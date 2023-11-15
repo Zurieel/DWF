@@ -1,7 +1,5 @@
 
 .btn-back{
-    position: relative;
-    margin-left: 50px;
 }
 
 .btn-delete-image{
@@ -12,8 +10,15 @@
 }
 
 .btn-edit{
-    position: relative;
-    margin-left: 890px;
+
+}
+
+.card-header{
+    background-color: transparent !important;
+}
+
+.card.card-body-product{
+    border-radius: 5%;
 }
 
 .card-primary{
@@ -23,13 +28,15 @@
     border: none;
 }
 
-.card-image{
-    width: 350px;
-    height: 350px;
-    margin: auto;
-    margin-left: 50px;
-    margin-top: 50px;
-    position: absolute;
+.card.card-image{
+    border-radius: 5%;
+}
+
+.carousel-item{
+    border-radius: 5%;
+}
+.d-block    {
+    border-radius: 5%;
 }
 
 .card-details{
@@ -42,12 +49,17 @@
     border: none;
 }
 
-.card-header{
+.product-price{
+    font-size: 30px;
+}
+
+.product-title{
     text-align: center;
     color: #30871a;;
     font-size: 50px;
     background-color: transparent;
     border: none;
+    margin-bottom: 15px;
 }
 
 .card-description{
@@ -90,10 +102,6 @@
     margin-left: 25px;
 }
 
-p{
-    font-size: 18px;
-}
-
 .card .subtitle{
     color: #30871a;
     margin-top: 12px;
@@ -111,9 +119,6 @@ p{
 }
 
 .edit-product-images{
-    margin:auto;
-    margin-top: 15px;
-    margin-left: 160px;
     font-size: 16px;
     color: #30871a;
 }
@@ -132,5 +137,63 @@ p{
   border: 1px solid #b6f3a3; /* Cambia el borde a un tono más oscuro de rojo al pasar el mouse por encima */
   color: white; /* Cambia el color del ícono a blanco (si es necesario) */
 }
+
+.table{
+}
+
+.description{
+    font-size: x-large;
+    text-align: start;
+}
+
+.gtin{
+    font-size: 16px;
+    text-align: start;
+}
+
+.envio{
+    font-size: 16px;
+    text-align: start;
+}
+
+.buy-btn{
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.price{
+    color: #30871a;
+    font-size: xx-large;
+}
+
+.row-md.quantity{
+    text-align: start;
+}
+
+.quantity-btns{
+    display: flex;
+    text-align: start;
+}
+
+.quantity-btn{
+    text-align: center;
+    font-size: 100%;
+    width: 2.5em;
+    height: 2.5em;
+    margin: 0 1px;
+}
+
+.quantity-input{
+    background-color: #43a02c;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
+.quantity-input:focus{
+    outline: none;
+}
+
+
 
 

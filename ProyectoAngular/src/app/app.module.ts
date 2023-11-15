@@ -8,6 +8,7 @@ import { ProductModule } from './modules/product/product.module';
 
 import { NgxPhotoEditorModule } from "ngx-photo-editor";
 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NgxPhotoEditorModule } from "ngx-photo-editor";
     BrowserModule,
     AppRoutingModule,
     ProductModule,
-    NgxPhotoEditorModule
+    NgxPhotoEditorModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

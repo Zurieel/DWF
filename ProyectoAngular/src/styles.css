@@ -7,6 +7,7 @@
 .btn{
     background-color: #43a02c;
     color: white;
+    cursor: pointer;
 }
 
 .btn:hover{
@@ -99,7 +100,7 @@
     margin: auto;
 }
 
-.navbar-expand-lg{
+.navbar-expand-md{
     background-color: #43a02c;
 }
 
