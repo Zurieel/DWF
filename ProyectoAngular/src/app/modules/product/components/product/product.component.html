@@ -1,28 +1,3 @@
-<head>
-    <link rel="stylesheet" href="/home/zurieel/Zuri/CC/Sexto/Front-end/ProyectoAngular/src/app/app.component.css">
-</head>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-md" data-bs-theme="light">
-
-    <div class="navbar-content container-fluid">
-    <a class="navbar-brand" href="#" style="color: white; font-size:30px; font-family:Impact;">Lucky Aide
-      <i class="fa-solid fa-clover"></i>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav me-auto">
-        </ul>
-        <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn my-2 my-sm-0" type="submit"><i class="ph ph-magnifying-glass search-menu" style="color: white;"></i></button>
-        </form>
-    </div>
-    </div>
-</nav>
-
 <div class="container-fluid body-content">
 
     <!-- Agrega el botón de agregar película -->
@@ -134,8 +109,6 @@
                     </div>
                     </div>
                 </div>
-                
-                <br><br><br>
     
                 <!-- price  -->
       
@@ -149,23 +122,19 @@
                     </div>
                     </div>
                 </div>
-                
-                <br>
 
                 <!-- stock  -->
       
                 <div class="col-md-6"> 
                     <div class="form-group">
-                    <label for="stock">Cantidad de productos <span class="text-danger">*</span> </label>
-                    <input type="text" class="form-control form-edit" formControlName="stock" id="stock" placeholder="Número de stock del producto..." 
+                    <label for="stock">Stock <span class="text-danger">*</span> </label>
+                    <input type="text" class="form-control form-edit" formControlName="stock" id="stock" placeholder="Número en stock del producto..." 
                         [ngClass]="{'is-invalid': form.controls['stock'].errors && submitted}" >
                     <div *ngIf="form.controls['stock'].errors && submitted">
                         <small class="text-danger">Por favor, ingrese una cantidad de productos válida</small>
                     </div>
                     </div>
                 </div>  
-                
-                <br><br><br>
 
                 <!-- category_id  -->
       
@@ -184,8 +153,6 @@
                       </div>
                     </div>
                 </div>
-                
-                <br><br><br>
 
                 <!-- description  -->
       

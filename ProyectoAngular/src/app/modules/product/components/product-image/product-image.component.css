@@ -125,16 +125,16 @@
 
 /* Cambia el color de los íconos del carrusel a rojo */
 .carousel-control-prev-icon, .carousel-control-next-icon {
-    background-color: #d4fbc8; /* Cambia el fondo a rojo */
-    border: 1px solid #d4fbc8; /* Cambia el borde a rojo */
+    background-color: #d7e0d4; /* Cambia el fondo a rojo */
+    border: 1px solid #d7e0d4; /* Cambia el borde a rojo */
     color: white; /* Cambia el color del ícono a blanco (si es necesario) */
   }
 
 /* Cambia el color del ícono del carrusel a rojo cuando se pasa el mouse por encima */
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon {
-  background-color: #b6f3a3; /* Cambia el fondo a un tono más oscuro de rojo al pasar el mouse por encima */
-  border: 1px solid #b6f3a3; /* Cambia el borde a un tono más oscuro de rojo al pasar el mouse por encima */
+  background-color: #b7beb4; /* Cambia el fondo a un tono más oscuro de rojo al pasar el mouse por encima */
+  border: 1px solid #b7beb4; /* Cambia el borde a un tono más oscuro de rojo al pasar el mouse por encima */
   color: white; /* Cambia el color del ícono a blanco (si es necesario) */
 }
 
@@ -152,8 +152,9 @@
 }
 
 .envio{
+    width: 30%;
     font-size: 16px;
-    text-align: start;
+    text-align: end;
 }
 
 .buy-btn{
@@ -192,6 +193,11 @@
 
 .quantity-input:focus{
     outline: none;
+}
+
+.stock{
+    color: red;
+    text-align: center;
 }
 
 
