@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CustomerModule } from './modules/customer/customer.module'
+import { CustomerModule } from './modules/customer/customer.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { ProductModule } from './modules/product/product.module';
 

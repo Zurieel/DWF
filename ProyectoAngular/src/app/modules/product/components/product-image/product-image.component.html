@@ -9,6 +9,16 @@
                 Regresar
             </span>
         </div>
+
+        <div class="col-md">
+            <div class="btn btn-edit-image">
+                <label for="uploadImage" class="upload-image">
+                    <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
+                    <i class="ph ph-file-image icon-text"></i>
+                    Añadir imagen
+                </label>
+            </div>
+        </div>
         
         <div class="col-md">
             <span class="btn btn-edit" (click)="updateProduct()">
@@ -17,15 +27,6 @@
             </span>
         </div>
 
-        <div class="col-md">
-        <div class="btn text-center">
-            <label for="uploadImage" class="upload-image">
-                <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
-                <i class="ph ph-file-image icon-text"></i>
-                Añadir imagen
-            </label>
-        </div>
-        </div>
     </div>
 </div>
 
@@ -35,7 +36,7 @@
     <div class="row principal">
 
         <!-- customer image  -->
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="card card-image">
                 <div class="">
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-interval="1000">
@@ -73,11 +74,11 @@
     
 
         <!-- customer data  -->
-        <div class="col-md-7">
+        <div class="col-md-8">
             <div class="card card-body-product">
                     <table class="table">
                         <thead class="product-title">
-                            <th class="">{{ product.product }}</th>
+                            <td>{{ product.product }}</td>
                         </thead>
                         <tbody>
                             <tr>
@@ -87,7 +88,7 @@
                             </tr>
 
                             <tr>
-                                <div class = "row-md">
+                                <div class = "row" style="background-color: transparent;">
                                     <td class="col-md gtin">Código de Producto: {{ product.gtin }}</td>
                                     <td class="col-md envio"><i class="ph ph-truck"></i> Envío gratis a todo el país</td> 
                                 </div>
@@ -118,9 +119,9 @@
                             </tr>
 
                             <tr *ngIf="product.stock > 0">
-                                <td class="col-md buy-btns">
-                                    <button class="btn buy-btn"><i class="ph ph-wallet"></i> Comprar ahora</button>
-                                    <button class="btn buy-btn"><i class="ph ph-shopping-cart"></i> Agregar al carrito</button>
+                                <td class="row-md buy-btns">
+                                    <button class="btn buy-btn col-md"><i class="ph ph-wallet"></i> Comprar ahora</button>
+                                    <button class="btn buy-btn col-md"><i class="ph ph-shopping-cart"></i> Agregar al carrito</button>
                                 </td>   
                             </tr>
                         </tbody>

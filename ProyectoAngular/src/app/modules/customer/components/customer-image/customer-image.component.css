@@ -1,0 +1,53 @@
+
+th{
+    color: #30871a;
+    font-size: 27px;
+    font-weight: 800;
+    text-align: start;
+    border: none;
+}
+
+h5{
+    color: black;
+}
+
+.card-body-customer{
+    padding: 16px;
+}
+
+.card-header{
+    background-color: transparent !important;
+}
+
+.row.data{
+    width: 100%;
+}
+
+.customer-image{
+    border-radius: 100%;
+    width: 300px;
+    height: 300px;
+}
+
+.btn.btn-edit{
+    float: right;
+}
+
+.edit-customer-image{
+    color: #30871a;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.customer-title{
+    text-align: center;
+    color: #30871a;;
+    font-size: 55px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    border: none;
+    margin-bottom: 15px;
+}
+
+.upload-image{
+    cursor: pointer;
+}
