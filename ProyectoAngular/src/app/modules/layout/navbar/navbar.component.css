@@ -1,0 +1,17 @@
+.dropdown-menu{
+    background-color: rgb(68, 122, 68);
+}
+
+.dropdown-item{
+    color: white;
+}
+
+.nav-link.dropdown-toggle{
+    color: white;
+}
+
+.i-cart{
+    font-size: 22px;
+    margin-right: 8px;
+}
+

@@ -6,6 +6,7 @@ import { CustomerComponent } from './modules/customer/components/customer/custom
 import { CustomerImageComponent } from './modules/customer/components/customer-image/customer-image.component'; 
 import { ProductComponent } from './modules/product/components/product/product.component';
 import { ProductImageComponent } from './modules/product/components/product-image/product-image.component';
+import { ProductListComponent } from './modules/product/components/product-list/product-list.component';
 import { RegionComponent } from './modules/customer/components/region/region.component';
 
 const routes: Routes = [
@@ -14,7 +15,9 @@ const routes: Routes = [
   { path: "customer/:rfc", component: CustomerImageComponent },
   { path: "product", component: ProductComponent },
   { path: "product/:gtin", component: ProductImageComponent },
-  { path: "region", component: RegionComponent }
+  { path: "region", component: RegionComponent },
+  { path: "products/:category", component: ProductListComponent },
+  { path: "products", component: ProductListComponent },
 ];
 
 @NgModule({

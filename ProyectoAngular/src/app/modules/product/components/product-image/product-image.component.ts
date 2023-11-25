@@ -46,7 +46,7 @@ export class ProductImageComponent {
 
   constructor(
     private productService: ProductService, // servicio product de API
-    public ProductImageService: ProductImageService, // servicio product image de API
+    public productImageService: ProductImageService, // servicio product image de API
     private formBuilder: FormBuilder, // formulario
     private categoryService: CategoryService, // servicio category de API
     private route: ActivatedRoute, // recupera parámetros de la url
@@ -166,7 +166,7 @@ export class ProductImageComponent {
     productImage.product_id = this.product.product_id; // Asigna el product_id del producto actual
     productImage.image = image;
   
-    this.ProductImageService.uploadProductImage(productImage).subscribe(
+    this.productImageService.uploadProductImage(productImage).subscribe(
       res => {
         // Muestra mensaje de confirmación
         Swal.fire({
@@ -197,7 +197,7 @@ export class ProductImageComponent {
   }
 
   visualizeImage(product_id: number) {
-    this.ProductImageService.getProductImage(product_id).subscribe(
+    this.productImageService.getProductImage(product_id).subscribe(
       (productImages: ProductImage[]) => {
         productImages.forEach(image => {
           // Construye la URL completa de la imagen
@@ -213,7 +213,7 @@ export class ProductImageComponent {
   }
 
   deleteImage(productId: number) {
-    this.ProductImageService.deleteProductImage(productId).subscribe(
+    this.productImageService.deleteProductImage(productId).subscribe(
       (response) => {
         // Image has been successfully deleted.
         console.log('Imagen eliminada:', response);

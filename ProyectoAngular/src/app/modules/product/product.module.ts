@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './components/category/category.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductImageComponent } from './components/product-image/product-image.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 import { NgxPhotoEditorModule } from "ngx-photo-editor";
 
@@ -16,6 +17,7 @@ import { NgxPhotoEditorModule } from "ngx-photo-editor";
     CategoryComponent,
     ProductComponent,
     ProductImageComponent,
+    ProductListComponent,
   ],
   imports: [
     CommonModule,

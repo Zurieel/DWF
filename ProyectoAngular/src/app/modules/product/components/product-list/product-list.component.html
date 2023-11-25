@@ -1,0 +1,14 @@
+
+<div class = "card principal">
+
+    <div class = "row">
+        <div *ngFor="let product of products" class="col-md-3">
+            <div class = "card product-card">
+                <img class ="product-image" src="assets/imagenes/productImageNull.jpg" alt="imagen de producto">
+                <div class="product-price">{{product.price}}</div>
+                <div class ="product-name"> {{product.product}}</div>
+            </div>
+        </div>
+    </div>
+
+</div>
