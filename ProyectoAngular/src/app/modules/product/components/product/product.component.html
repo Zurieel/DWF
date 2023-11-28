@@ -1,5 +1,5 @@
 
-    <!-- Agrega el botón de agregar película -->
+    <!-- Agrega el botón de agregar peroducto -->
     <button type="button" class="btn btn-add" (click)="showModalForm()">
       <i class="ph ph-list-plus icon-text-button"></i>
       Agregar producto
@@ -137,20 +137,22 @@
 
                 <!-- category_id  -->
       
-                <div class="col-md-6"> 
+                <div class="col-md-6">
                     <div class="form-group">
-                      <label for="category_id">Categoría <span class="text-danger">*</span> </label>
+                      <label for="category_id">Categoría <span class="text-danger">*</span></label>
                       <select class="form-select form-edit" formControlName="category_id" id="category_id"
                           [ngClass]="{'is-invalid': form.controls['category_id'].errors && submitted}">
-                          <option [ngValue]=null hidden>Seleccione una categoría</option>
-                          <ng-container *ngFor="let category of categories" >
-                              <option *ngIf="category.status == 1" [ngValue]="category.category_id">{{ category.category }}</option>
-                          </ng-container>
-                      </select>
-                      <div *ngIf="form.controls['category_id'].errors && submitted">
-                          <small class="text-danger">Por favor, seleccione una categoría</small>
-                      </div>
+                        <option [ngValue]="null" hidden>Seleccione una categoría</option>
+                        <ng-container *ngFor="let category of categories">
+                            <option *ngIf="category.status == 1" [ngValue]="category.category_id">{{ category.category }}</option>
+                        </ng-container>
+                        <!-- Nueva Categoría -->
+                        <option value="nueva">Nueva Categoría</option>
+                    </select>
+                    <div *ngIf="form.controls['category_id'].errors && submitted">
+                      <small class="text-danger">Por favor, seleccione una categoría</small>
                     </div>
+                  </div>
                 </div>
 
                 <!-- description  -->
