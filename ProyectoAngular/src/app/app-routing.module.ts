@@ -8,6 +8,7 @@ import { ProductComponent } from './modules/product/components/product/product.c
 import { ProductImageComponent } from './modules/product/components/product-image/product-image.component';
 import { ProductListComponent } from './modules/product/components/product-list/product-list.component';
 import { RegionComponent } from './modules/customer/components/region/region.component';
+import { PrincipalComponent } from './modules/principal/components/principal/principal.component';
 
 const routes: Routes = [
   { path: "category", component: CategoryComponent },
@@ -16,8 +17,9 @@ const routes: Routes = [
   { path: "product", component: ProductComponent },
   { path: "product/:gtin", component: ProductImageComponent },
   { path: "region", component: RegionComponent },
-  { path: "products/:category", component: ProductListComponent },
-  { path: "products", component: ProductListComponent },
+  { path: "products/category/:category_id", component: ProductListComponent },
+  { path: "", component: PrincipalComponent },
+
 ];
 
 @NgModule({

@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 import { Category } from '../../product/_models/category';
 import { CategoryService } from '../../product/_services/category.service';
 
-
 declare var $: any;
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +18,8 @@ export class NavbarComponent {
   category: any | Category = new Category(); 
 
   constructor(
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private router: Router,
   ){}
 
   ngOnInit(){
@@ -43,4 +44,9 @@ export class NavbarComponent {
       }
     );
   }
+
+  showCatalogue(category_id: number){
+    this.router.navigate(['products/category/' + category_id]);
+  }
+
 }

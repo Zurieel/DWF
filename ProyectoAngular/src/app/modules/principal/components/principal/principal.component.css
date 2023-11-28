@@ -1,0 +1,13 @@
+.card{
+    border: none;
+}
+
+.card.craig{
+    width: 70%;
+}
+
+.text-welcome{
+    color: #3a9c21;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    font-size: 65px;
+}

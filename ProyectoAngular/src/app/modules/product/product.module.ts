@@ -34,4 +34,4 @@ import { NgxPhotoEditorModule } from "ngx-photo-editor";
   ]
 })
 
-export class ProductModule { }
+export class ProductModule {}

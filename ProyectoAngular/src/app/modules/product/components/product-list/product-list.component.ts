@@ -9,6 +9,8 @@ import { ProductService } from '../../_services/product.service';
 import { ProductImageService } from '../../_services/product-image.service';
 
 import Swal from'sweetalert2'; // sweetalert
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -18,29 +20,36 @@ import Swal from'sweetalert2'; // sweetalert
 export class ProductListComponent {
 
   categories: Category[] = []; 
+  category: any | Category = new Category(); 
 
-  product: any | Product = new Product();
-  productImage: ProductImage[] = [];
+  productImages: ProductImage[] = [];
   products: DtoProductList[] = []; 
+
+  showOverlay: boolean = false;
 
   constructor(
     private productService: ProductService,
     private productImageService : ProductImageService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private route: ActivatedRoute,
+    private router: Router,
   ){}
 
   ngOnInit(){
-    this.getProducts()
-    console.log(this.getProductImage(this.product.product_id))
+    this.route.params.subscribe(params => {
+      const category_id = +params['category_id']; 
+      this.getProductsBySelectedCategory(category_id);
+    });
   }
 
-  getProducts(){
-    this.productService.getProducts().subscribe(
-      res => {
-        this.products = res; // asigna la respuesta de la API a la lista de productos
+  getProductsBySelectedCategory(category_id: number) {
+    this.productService.getProductsByCategory(category_id).subscribe(
+      (res) => {
+        this.products = res;
+        console.log(this.products);
       },
-      err => {
-        // muestra mensaje de error
+      (err) => {
+        // manejar errores
         Swal.fire({
           position: 'center',
           icon: 'error',
@@ -53,27 +62,8 @@ export class ProductListComponent {
     );
   }
 
-  getProductImagesForAllProducts() {
-    // Recorrer todos los productos y obtener las imágenes
-    this.products.forEach(product => {
-      this.getProductImage(product.product_id);
-    });
-  }
-
-  getProductImage(product_id: number){
-    this.productImageService.getProductImages(product_id).subscribe(
-      (productImages: ProductImage[]) => {
-        productImages.forEach(image => {
-          // Construye la URL completa de la imagen
-          image.image = `assets/imagenes/${image.image}`;
-        });
-        this.productImage = productImages;
-        console.log('Imágenes del producto:', productImages);
-      },
-      error => {
-        console.error('Error al obtener la imagen del producto:', error);
-      }
-    )
+  showProduct(gtin: string){
+    this.router.navigate(['product/' + gtin]);
   }
 
 

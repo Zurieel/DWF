@@ -10,15 +10,10 @@ td{
 .btn-delete-image{
     border: none;
     background-color: white;
-    margin-left: 15px;
     color: red;
 }
 
 .btn.btn-edit{
-    float: right;
-}
-
-.btn.btn-edit-image{
     float: right;
 }
 
@@ -50,7 +45,7 @@ td{
 
 .product-title{
     text-align: center;
-    color: #30871a;;
+    color: #30871a;
     font-size: 55px;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
     background-color: transparent;

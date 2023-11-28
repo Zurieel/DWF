@@ -6,12 +6,25 @@
     color: white;
 }
 
-.nav-link.dropdown-toggle{
-    color: white;
-}
-
 .i-cart{
     font-size: 22px;
     margin-right: 8px;
 }
+
+.navbar-brand{
+    height: 50px;
+}
+
+.nav-item{
+    margin-right: 20px;
+}
+
+.nav-link{
+    font-size: 17px;
+}
+.nav-link.dropdown-toggle{
+    color: white;
+}
+
+
 

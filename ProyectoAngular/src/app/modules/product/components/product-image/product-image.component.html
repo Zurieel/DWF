@@ -1,14 +1,8 @@
 
 <div class="card-header">
     <div class="row">
-        <div class="col-md-8">
-            <span class="btn btn-back" (click)="redirect(['product'])">
-                <i class="ph ph-arrow-circle-left icon-text-button"></i>
-                Regresar
-            </span>
-        </div>
 
-        <div class="col-md">
+        <div class="col-md-8">
             <div class="btn btn-edit-image">
                 <label for="uploadImage" class="upload-image">
                     <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
@@ -96,7 +90,7 @@
 
                             <tr>
                                 <div class = "row-md">
-                                    <td class="col-md price">${{ product.price }}</td>  
+                                    <td class="col-md price">{{ product.price | currency:'USD':'symbol':'1.2-2'}}</td>  
                                 </div>
                             </tr>
 
