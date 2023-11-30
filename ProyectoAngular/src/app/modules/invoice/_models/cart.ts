@@ -4,4 +4,4 @@ export class Cart{
     gtin: string = "";
     quantity: number = 0;
     status: number = 0;
-}
+}	

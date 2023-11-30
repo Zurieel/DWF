@@ -112,8 +112,15 @@
 
                             <tr *ngIf="product.stock > 0">
                                 <td class="row-md buy-btns">
-                                    <button class="btn buy-btn col-md"><i class="ph ph-wallet"></i> Comprar ahora</button>
-                                    <button class="btn buy-btn col-md"><i class="ph ph-shopping-cart"></i> Agregar al carrito</button>
+                                    
+                                    <div class="row-md buy-btns">
+                                      <button class="btn buy-btn col-md"><i class="ph ph-wallet"></i> Comprar ahora</button>
+                                        <div class="col-md-6">
+                                          <button class="btn buy-btn col-md" (click)="agregarAlCarrito()">
+                                            <i class="ph ph-shopping-cart"></i> Agregar al carrito
+                                          </button>
+                                      </div>
+                                    </div>
                                 </td>   
                             </tr>
                         </tbody>

@@ -10,7 +10,7 @@ import { ProductModule } from './modules/product/product.module';
 
 import { NgxPhotoEditorModule } from "ngx-photo-editor";
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

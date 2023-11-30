@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -6,6 +6,7 @@ import { Product } from '../../_models/product';
 import { Category } from '../../_models/category';
 import { ProductImage } from '../../_models/product-image';
 
+import { CartService } from '../../../invoice/_services/cart.service';
 import { ProductService } from '../../_services/product.service';
 import { CategoryService } from '../../_services/category.service';
 import { ProductImageService } from '../../_services/product-image.service';
@@ -45,6 +46,7 @@ export class ProductImageComponent {
   submitted = false; // indica si se envió el formulario
 
   constructor(
+    private cartService: CartService,
     private productService: ProductService, // servicio product de API
     public productImageService: ProductImageService, // servicio product image de API
     private formBuilder: FormBuilder, // formulario
@@ -313,5 +315,25 @@ export class ProductImageComponent {
     }
   }
 
+  agregarAlCarrito() { 
+    if (this.gtin) {
+        const nuevoCart = {
+          rfc: 'SAAI920101A01',
+          gtin: this.gtin,
+          quantity: 1
+        };
+
+        this.cartService.addToCart(nuevoCart).subscribe(
+          res => {
+            console.log('Elemento agregado al carrito con éxito', res);
+          },
+          err => {
+            console.error('Error al agregar al carrito', err);
+          }
+        );
+    } else {
+      console.error('El valor de GTIN es nulo o no válido');
+    }
+  }
 }
 

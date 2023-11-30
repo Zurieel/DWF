@@ -49,4 +49,10 @@ export class NavbarComponent {
     this.router.navigate(['products/category/' + category_id]);
   }
 
+  showCart(event: Event) {
+    event.preventDefault();  // Esto evita la acción predeterminada del enlace
+    // Aquí puedes agregar la lógica adicional, como la navegación a la página 'cart'
+    this.router.navigate(['cart']);
+  }
+
 }

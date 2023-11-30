@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { CartComponent } from './modules/invoice/components/cart/cart.component';
 import { CategoryComponent } from './modules/product/components/category/category.component';
 import { CustomerComponent } from './modules/customer/components/customer/customer.component';
 import { CustomerImageComponent } from './modules/customer/components/customer-image/customer-image.component'; 
@@ -11,6 +12,7 @@ import { RegionComponent } from './modules/customer/components/region/region.com
 import { PrincipalComponent } from './modules/principal/components/principal/principal.component';
 
 const routes: Routes = [
+  { path: "cart", component: CartComponent },
   { path: "category", component: CategoryComponent },
   { path: "customer", component: CustomerComponent },
   { path: "customer/:rfc", component: CustomerImageComponent },

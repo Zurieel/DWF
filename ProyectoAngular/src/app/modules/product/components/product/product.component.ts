@@ -43,7 +43,7 @@ export class ProductComponent {
     this.getProducts();
   }
 
-  ngOnSubmit(){
+  ngOnSubmit(){ 
     // valida el formulario
     this.submitted = true;
     if(this.form.invalid) return;
