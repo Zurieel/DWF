@@ -9,13 +9,11 @@ import { CategoryComponent } from './components/category/category.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductImageComponent } from './components/product-image/product-image.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { CartComponent } from '../invoice/components/cart/cart.component';
 
 import { NgxPhotoEditorModule } from "ngx-photo-editor";
 
 @NgModule({
   declarations: [
-    CartComponent,
     CategoryComponent,
     ProductComponent,
     ProductImageComponent,
@@ -30,7 +28,6 @@ import { NgxPhotoEditorModule } from "ngx-photo-editor";
     NgxPhotoEditorModule,
   ],
   exports: [
-    CartComponent,
     CategoryComponent,
     ProductComponent,
     ProductImageComponent

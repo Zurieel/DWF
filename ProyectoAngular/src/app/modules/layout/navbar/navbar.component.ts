@@ -17,6 +17,8 @@ export class NavbarComponent {
   categories: Category[] = [];
   category: any | Category = new Category(); 
 
+  rfc: string = 'SAAI920101A01';
+
   constructor(
     private categoryService: CategoryService,
     private router: Router,
@@ -49,10 +51,8 @@ export class NavbarComponent {
     this.router.navigate(['products/category/' + category_id]);
   }
 
-  showCart(event: Event) {
-    event.preventDefault();  // Esto evita la acción predeterminada del enlace
-    // Aquí puedes agregar la lógica adicional, como la navegación a la página 'cart'
-    this.router.navigate(['cart']);
+  showCart(rfc: string) {
+    this.router.navigate(['cart/' + rfc]);
   }
 
 }

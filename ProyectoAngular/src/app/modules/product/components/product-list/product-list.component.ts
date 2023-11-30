@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { Category } from '../../_models/category';
 import { CategoryService } from '../../_services/category.service';
 import { DtoProductList } from '../../_dtos/dto-product-list';
-import { Product } from '../../_models/product';
 import { ProductImage } from '../../_models/product-image';
 import { ProductService } from '../../_services/product.service';
 import { ProductImageService } from '../../_services/product-image.service';
@@ -29,8 +28,6 @@ export class ProductListComponent {
 
   constructor(
     private productService: ProductService,
-    private productImageService : ProductImageService,
-    private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
   ){}

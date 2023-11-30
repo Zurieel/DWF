@@ -6,11 +6,6 @@
     color: white;
 }
 
-.i-cart{
-    font-size: 22px;
-    margin-right: 8px;
-}
-
 .navbar-brand{
     height: 50px;
 }
@@ -20,10 +15,15 @@
 }
 
 .nav-link{
+    color: white;
     font-size: 17px;
 }
 .nav-link.dropdown-toggle{
     color: white;
+}
+
+.ph.ph-shopping-cart.i-cart{
+    font-size: 25px;
 }
 
 

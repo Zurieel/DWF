@@ -21,7 +21,7 @@ import { ItemComponent } from './components/item/item.component';
     RouterModule,
     HttpClientModule,
     FormsModule
-  ]
+  ],
   exports: [
     CartComponent,
     InvoiceComponent,

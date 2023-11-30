@@ -2,7 +2,7 @@
 <div class = "card principal">
 
     <div class="row">
-        <div *ngFor="let product of products" class="col-md-3">
+        <div *ngFor="let product of products" class="col-md-3 mb-2">
           <div *ngIf="product.status === 1">
             <div class="card product-card" (mouseover)="showOverlay = true" (mouseout)="showOverlay = false" (click)="showProduct(product.gtin)">
               <img class="product-image" [src]="'assets/imagenes/' + product.image || 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto">

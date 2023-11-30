@@ -53,7 +53,6 @@ export class ProductImageComponent {
     private categoryService: CategoryService, // servicio category de API
     private route: ActivatedRoute, // recupera parámetros de la url
     private router: Router, // redirigir a otro componente
-
     private service: NgxPhotoEditorService
   ){}
 
@@ -66,7 +65,7 @@ export class ProductImageComponent {
         position: 'center',
         icon: 'error',
         showConfirmButton: false,
-        title: 'GTIN de producto inválido',
+        title: '¡GTIN de producto inválido!',
         background: '#292A2D',
         timer: 2000
       });
@@ -241,7 +240,6 @@ export class ProductImageComponent {
   }
   
   // catalogues
-
   getCategories(){
     this.categoryService.getCategories().subscribe(
       res => {
@@ -262,7 +260,6 @@ export class ProductImageComponent {
   }
   
   // auxiliary functions
-
   getCategory(id: number){
     this.categoryService.getCategory(id).subscribe(
       res => {
@@ -315,25 +312,67 @@ export class ProductImageComponent {
     }
   }
 
-  agregarAlCarrito() { 
-    if (this.gtin) {
+  agregarAlCarrito() {
+  
+    if (!isNaN(this.quantity) && this.quantity >= 1) {
+      if (this.gtin) {
         const nuevoCart = {
           rfc: 'SAAI920101A01',
           gtin: this.gtin,
-          quantity: 1
+          quantity: this.quantity
         };
-
+  
         this.cartService.addToCart(nuevoCart).subscribe(
           res => {
-            console.log('Elemento agregado al carrito con éxito', res);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: '¡Producto agregado al carrito exitosamente!',
+              background: '#292A2D',
+              showConfirmButton: false,
+              timer: 2000
+            });
+  
+            console.log(res); // Puedes imprimir la respuesta del servicio si lo deseas.
+  
           },
           err => {
-            console.error('Error al agregar al carrito', err);
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              showConfirmButton: false,
+              title: err.error.message,
+              background: '#292A2D',
+              timer: 2000
+            });
           }
         );
+      } else {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          showConfirmButton: false,
+          title: '¡GTIN inválido!',
+          background: '#292A2D',
+          timer: 2000
+        });
+        console.error('El valor de GTIN es nulo o no válido');
+      }
     } else {
-      console.error('El valor de GTIN es nulo o no válido');
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        showConfirmButton: false,
+        title: '¡Cantidad inválida!',
+        background: '#292A2D',
+        timer: 2000
+      });
     }
+  }
+
+  showCart(event: Event) {
+    event.preventDefault();  
+    this.router.navigate(['cart']);
   }
 }
 

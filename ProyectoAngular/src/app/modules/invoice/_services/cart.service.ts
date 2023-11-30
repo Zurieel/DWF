@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { DtoCartDetails } from '../_dtos/dto-cart-details';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,14 @@ export class CartService {
     return this.http.post(this.url + this.route, cart);
   }
 
-  deleteCart(id: number) {
-    return this.http.delete(this.url + this.route + "/" + id);
+  deleteCart(rfc: string) {
+    return this.http.delete(this.url + this.route + "/clear" + rfc);
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función getCart() */
-  getCart() {}
+  getCart(rfc: string) {
+    return this.http.get<DtoCartDetails[]>(this.url + this.route + "/" + rfc)
+  }
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función removeFromCart() */
   removeFromCart() {}

@@ -5,55 +5,48 @@
         <a class="navbar-brand" href="#" style="color: white; font-size: 30px; font-family: Impact;">
             <img src="assets/imagenes/LuckyAide.png" alt="LuckyAide" class="logo" style="height: 100px; width: 100px; margin-left: 10px; margin-top: -30px;">
         </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
 
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categorías</a>
-                <div class="dropdown-menu">
-                    <div *ngFor="let category of categories">
-                        <a *ngIf="category.status === 1" class="dropdown-item" (click)="showCatalogue(category.category_id)">{{ category.category }}</a> 
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categorías</a>
+                    <div class="dropdown-menu">
+                        <div *ngFor="let category of categories">
+                            <a *ngIf="category.status === 1" class="dropdown-item" (click)="showCatalogue(category.category_id)">{{ category.category }}</a> 
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administración</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/category">Categorias</a>
-                    <a class="dropdown-item" href="/customer">Clientes</a>
-                    <a class="dropdown-item" href="/invoice">Facturas</a>
-                    <a class="dropdown-item" href="/product">Productos</a>
-                    <a class="dropdown-item" href="/region">Regiones</a>
-                </div>
-            </li>
-        </ul>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administración</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/category">Categorias</a>
+                        <a class="dropdown-item" href="/customer">Clientes</a>
+                        <a class="dropdown-item" href="/invoice">Facturas</a>
+                        <a class="dropdown-item" href="/product">Productos</a>
+                        <a class="dropdown-item" href="/region">Regiones</a>
+                    </div>
+                </li>
+            </ul>
 
-        <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn my-2 my-sm-0" type="submit"><i class="ph ph-magnifying-glass search-menu" style="color: white;"></i></button>
-        </form>
+            <form class="d-flex">
+            <input class="form-control me-sm-2" type="search" placeholder="Search">
+            <button class="btn my-2 my-sm-0" type="submit"><i class="ph ph-magnifying-glass search-menu" style="color: white;"></i></button>
+            </form>
 
-        <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="cartDropdown" role="button"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="ph ph-shopping-cart i-cart"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown">
-                    <a class="dropdown-item" href="#" (click)="showCart($event)">Artículos Agregados</a>
-                    <a class="dropdown-item" href="#">Vaciar Carrito</a>
-                </div>
-            </li>
- 
-        </ul>
+                <!-- Nav Item - Alerts -->
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <a class="nav-link" href="#" id="cartDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="ph ph-shopping-cart i-cart" (click)="showCart(rfc)"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-    
-    </div>
-
 </nav>

@@ -1,30 +1,59 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../_services/cart.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { DtoCartDetails } from '../../_dtos/dto-cart-details';
 
-import Swal from 'sweetalert2'; // sweetalert
+import Swal from'sweetalert2'; // sweetalert
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
+
 export class CartComponent {
 
   // formulario de registro
-  form = this.formBuilder.group({
-    rfc: ['', [Validators.required, Validators.pattern('[A-Z]{4}[0-9]{6}[A-Z0-9]{3}')]]
-  });
+  rfc: string = 'SAAI920101A01';
+  cart: DtoCartDetails[] = []; 
 
   submitted = false; // indica si se envió el formulario
 
   constructor(
     private cartService: CartService,
-    private formBuilder: FormBuilder // formulario) 
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
-  eliminarCarrito(id: number) {
-    this.cartService.deleteCart(id).subscribe(
+  ngOnInit(){
+    this.getCart(this.rfc);
+  }
+  
+  getCart(rfc: string){
+    this.cartService.getCart(rfc).subscribe(
+      (res) => {
+        this.cart = res; // Asigna la respuesta a this.cart
+        console.log(this.cart);
+      },
+      (err) => {
+        // manejar errores
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          showConfirmButton: false,
+          title: err.error.message,
+          background: '#292A2D',
+          timer: 2000
+        });
+      }
+    )
+  }
+
+
+  eliminarCarrito(rfc: string) {
+    this.cartService.deleteCart(rfc).subscribe(
       res => {
         console.log('Carrito eliminado con éxito', res);      
       },

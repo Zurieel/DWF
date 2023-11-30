@@ -12,7 +12,8 @@ import { RegionComponent } from './modules/customer/components/region/region.com
 import { PrincipalComponent } from './modules/principal/components/principal/principal.component';
 
 const routes: Routes = [
-  { path: "cart", component: CartComponent },
+  { path: "cart/:rfc", component: CartComponent },
+  { path: "cart/clear/:rfc", component: CartComponent},
   { path: "category", component: CategoryComponent },
   { path: "customer", component: CustomerComponent },
   { path: "customer/:rfc", component: CustomerImageComponent },
@@ -21,7 +22,6 @@ const routes: Routes = [
   { path: "region", component: RegionComponent },
   { path: "products/category/:category_id", component: ProductListComponent },
   { path: "", component: PrincipalComponent },
-
 ];
 
 @NgModule({
