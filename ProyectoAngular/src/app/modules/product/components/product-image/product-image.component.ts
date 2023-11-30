@@ -32,6 +32,7 @@ export class ProductImageComponent {
   category: any | Category = new Category(); // datos de la categoria del producto
 
   quantity: number = 1;
+  rfc: string = 'SAAI920101A01'; 
 
   // formulario de actualización
   form = this.formBuilder.group({
@@ -317,7 +318,7 @@ export class ProductImageComponent {
     if (!isNaN(this.quantity) && this.quantity >= 1) {
       if (this.gtin) {
         const nuevoCart = {
-          rfc: 'SAAI920101A01',
+          rfc: this.rfc,
           gtin: this.gtin,
           quantity: this.quantity
         };
