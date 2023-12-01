@@ -1,0 +1,14 @@
+.btn.btn-delete-product{
+    background-color:brown;
+}
+
+.product-image{
+    max-width: 70px;
+    max-height: 70px; 
+    width: auto;
+    height: auto;
+}
+
+.vertical-center {
+    vertical-align: middle;
+  }

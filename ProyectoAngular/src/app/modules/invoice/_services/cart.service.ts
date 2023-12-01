@@ -26,5 +26,7 @@ export class CartService {
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Cart - función removeFromCart() */
-  removeFromCart() {}
+  removeFromCart(id: number) {
+    return this.http.delete<DtoCartDetails[]>(this.url + this.route + "/" + id)
+  }
 }

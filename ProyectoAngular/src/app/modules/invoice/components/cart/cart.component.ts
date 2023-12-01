@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../_services/cart.service';
-import { FormBuilder, Validators } from '@angular/forms';
 import { DtoCartDetails } from '../../_dtos/dto-cart-details';
 
 import Swal from'sweetalert2'; // sweetalert
@@ -55,7 +54,16 @@ export class CartComponent {
   eliminarCarrito(rfc: string) {
     this.cartService.deleteCart(rfc).subscribe(
       res => {
-        console.log('Carrito eliminado con éxito', res);      
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: '¡Carrito eliminado exitosamente!',
+          background: '#292A2D',
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+        this.getCart(this.rfc);    
       },
       err => {
         // muestra mensaje de error
@@ -69,5 +77,33 @@ export class CartComponent {
         });
       }
     );
+  }
+
+  quitaProducto(id: number){
+    this.cartService.removeFromCart(id).subscribe(
+      res => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: '¡Producto eliminado del carrito exitosamente!',
+          background: '#292A2D',
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+        this.getCart(this.rfc);
+
+      },
+      err => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          showConfirmButton: false,
+          title: err.error.message,
+          background: '#292A2D',
+          timer: 2000
+        });
+      }
+    )
   }
 }
