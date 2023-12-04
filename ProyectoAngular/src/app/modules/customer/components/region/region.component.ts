@@ -43,8 +43,10 @@ export class RegionComponent {
         Swal.fire({
           position:'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Región desactivada exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -56,9 +58,11 @@ export class RegionComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -72,8 +76,10 @@ export class RegionComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Región activada exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -85,9 +91,11 @@ export class RegionComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -104,9 +112,11 @@ export class RegionComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -134,8 +144,10 @@ export class RegionComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Región registrada exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -149,9 +161,11 @@ export class RegionComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -165,8 +179,10 @@ export class RegionComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Región actualizada exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -182,9 +198,11 @@ export class RegionComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }

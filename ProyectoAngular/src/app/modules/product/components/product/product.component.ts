@@ -55,8 +55,10 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Producto registrado exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -70,9 +72,11 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -88,8 +92,10 @@ export class ProductComponent {
         Swal.fire({
           position:'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Producto desactivado exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -101,9 +107,11 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -117,8 +125,10 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Producto activado exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -130,9 +140,11 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -149,9 +161,11 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -174,33 +188,18 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
     );
   }
 
-  showNewCategoryForm() {
-    // Lógica para mostrar el formulario de nueva categoría
-    const selectedCategoryId = this.form.controls['category_id'].value;
-
-    if (selectedCategoryId === 'nueva') {
-      // Implementa la lógica para la nueva categoría aquí
-      console.log('El usuario eligió "Nueva Categoría"');
-
-      // Puedes mostrar un formulario adicional aquí o realizar otras acciones según tus necesidades.
-      // Por ejemplo, podrías abrir otro modal o cambiar la visibilidad de un formulario en la misma modal existente.
-	    } else {
-	      // Lógica para el caso en que se haya seleccionado una categoría existente
-	      console.log('El usuario eligió una categoría existente');
-    }
-  }
-
   // modals 
-
   showModalForm(){
     this.form.reset();
     this.submitted = false;

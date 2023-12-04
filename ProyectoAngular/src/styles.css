@@ -1,3 +1,4 @@
+
 .body-content{
     max-width: 1280px;
     margin: auto;
@@ -11,7 +12,7 @@
 }
 
 .btn:hover{
-    background-color: #378025;
+    background-color: #30871a;
 }
 
 .btn-dropdown{
@@ -60,7 +61,7 @@
 }
 
 .disable-item{
-    color:#E60026 !important;
+    color: rgb(255, 0, 0) !important;
     cursor: pointer;
 }
 
@@ -109,7 +110,7 @@
 }
 
 .td-status-enable{
-    color: #43a02c;
+    color: #30871a;
 }
 
 .td-status-disable{

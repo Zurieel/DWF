@@ -7,7 +7,7 @@
                 <label for="uploadImage" class="upload-image">
                     <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
                     <i class="ph ph-file-image icon-text"></i>
-                    Añadir imagen
+                    Añadir Imagen
                 </label>
             </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="col-md">
             <span class="btn btn-edit" (click)="updateProduct()">
                 <i class="ph ph-note-pencil icon-text-button"></i>
-                Editar producto
+                Editar Producto
             </span>
         </div>
 
@@ -39,7 +39,7 @@
                                     <div class="delete-product-image text-center">
                                         <button type="button" class="btn-delete-image" (click)="deleteImage(productImage.product_image_id)">
                                             <i class="ph ph-trash icon-text"style="font-size: 18px;"></i>
-                                            Eliminar imagen
+                                            Eliminar Imagen
                                         </button>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                                 <td class="row-md buy-btns">
                                     
                                     <div class="row-md buy-btns">
-                                        <button class="btn buy-btn col-md" (click)="showCart($event)"><i class="ph ph-credit-card"></i> Comprar ahora</button>
+                                        <button class="btn buy-btn col-md" (click)="comprarAhora()"><i class="ph ph-credit-card"></i> Comprar ahora</button>
                                         <button class="btn buy-btn col-md" (click)="agregarAlCarrito()">
                                             <i class="ph ph-shopping-cart"></i> Agregar al carrito
                                         </button>
@@ -133,7 +133,7 @@
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h2 class="modal-title">Nuevo producto</h2>
+              <h2 class="modal-title">Actualizar Producto</h2>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span>
               </button>
             </div>

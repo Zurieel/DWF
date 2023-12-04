@@ -57,9 +57,11 @@ export class CustomerImageComponent {
       Swal.fire({
         position: 'center',
         icon: 'error',
+        iconColor: 'brown',
         showConfirmButton: false,
-        title: '¡RFC de cliente inválido!',
-        background: '#292A2D',
+        title: '¡RFC inexistente!',
+        color: 'brown',
+        background: '#f8a4a4',
         timer: 2000
       });
     }
@@ -78,9 +80,11 @@ export class CustomerImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -99,8 +103,10 @@ export class CustomerImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Cliente actualizado exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -126,9 +132,11 @@ export class CustomerImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -163,8 +171,10 @@ export class CustomerImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Imagen actualizada exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -178,9 +188,11 @@ export class CustomerImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -199,9 +211,11 @@ export class CustomerImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -220,9 +234,11 @@ export class CustomerImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }

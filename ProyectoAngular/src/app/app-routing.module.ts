@@ -13,7 +13,6 @@ import { PrincipalComponent } from './modules/principal/components/principal/pri
 
 const routes: Routes = [
   { path: "cart/:rfc", component: CartComponent },
-  { path: "cart/clear/:rfc", component: CartComponent},
   { path: "category", component: CategoryComponent },
   { path: "customer", component: CustomerComponent },
   { path: "customer/:rfc", component: CustomerImageComponent },

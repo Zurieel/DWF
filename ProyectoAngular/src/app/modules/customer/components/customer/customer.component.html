@@ -1,7 +1,7 @@
     <!-- Agrega el botón de agregar película -->
     <button type="button" class="btn btn-add" (click)="showModalForm()">
       <i class="ph ph-list-plus icon-text-button"></i>
-      Agregar cliente
+      Agregar Cliente
     </button>
 
     <br><br>
@@ -41,7 +41,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <a class="dropdown-item edit-item" (click)="showCustomer(customer.rfc)">
-                            <i class="ph ph-circles-three"></i> Ver detalles
+                            <i class="ph ph-circles-three"></i> Ver Detalles
                           </a>
                           <a *ngIf="customer.status == 0" class="dropdown-item enable-item" (click)="enableCustomer(customer.customer_id)">
                             <i class="ph ph-check-circle"></i> Activar

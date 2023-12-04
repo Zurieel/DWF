@@ -41,9 +41,11 @@ export class CartComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -51,59 +53,106 @@ export class CartComponent {
   }
 
 
-  eliminarCarrito(rfc: string) {
-    this.cartService.deleteCart(rfc).subscribe(
-      res => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: '¡Carrito eliminado exitosamente!',
-          background: '#292A2D',
-          showConfirmButton: false,
-          timer: 2000
-        });
+  async eliminarCarrito(rfc: string) {
 
-        this.getCart(this.rfc);    
-      },
-      err => {
-        // muestra mensaje de error
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          showConfirmButton: false,
-          title: err.error.message,
-          background: '#292A2D',
-          timer: 2000
-        });
+    if(this.cart.length != 0){
+
+      const result = await Swal.fire({
+        position: 'center',
+        title: '¿Deseas vaciar tu carrito?',
+        background: '#e0ffce',
+        color: '#30871a',
+        icon: 'question',
+        iconColor: '#30871a',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+        confirmButtonColor: "#30871a",
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor: 'brown'
+      })
+  
+      if(result.isConfirmed){
+  
+        this.cartService.deleteCart("/"+rfc).subscribe(
+          res => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              iconColor: '#30871a',
+              title: '¡Carrito eliminado exitosamente!',
+              color: '#30871a',
+              background: '#e0ffce',
+              showConfirmButton: false,
+              timer: 2000
+            });
+    
+            this.getCart(this.rfc);    
+          },
+          err => {
+            // muestra mensaje de error
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              iconColor: 'brown',
+              showConfirmButton: false,
+              title: err.error.message,
+              color: 'brown',
+              background: '#f8a4a4',
+              timer: 2000
+            });
+          }
+        );
       }
-    );
+    }
   }
 
-  quitaProducto(id: number){
-    this.cartService.removeFromCart(id).subscribe(
-      res => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: '¡Producto eliminado del carrito exitosamente!',
-          background: '#292A2D',
-          showConfirmButton: false,
-          timer: 2000
-        });
+  async quitaProducto(id: number){
 
-        this.getCart(this.rfc);
+    const result = await Swal.fire({
+      position: 'center',
+      title: '¿Deseas eliminar este producto de tu carrito?',
+      background: '#e0ffce',
+      color: '#30871a',
+      icon: 'question',
+      iconColor: '#30871a',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      confirmButtonColor: "#30871a",
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: 'brown'
+    })
 
-      },
-      err => {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          showConfirmButton: false,
-          title: err.error.message,
-          background: '#292A2D',
-          timer: 2000
-        });
-      }
-    )
+    if(result.isConfirmed){
+    
+      this.cartService.removeFromCart(id).subscribe(
+        res => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            iconColor: '#30871a',
+            title: '¡Producto eliminado del carrito exitosamente!',
+            color: '#30871a',
+            background: '#e0ffce',
+            showConfirmButton: false,
+            timer: 2000
+          });
+
+          this.getCart(this.rfc);
+
+        },
+        err => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            iconColor: 'brown',
+            showConfirmButton: false,
+            title: err.error.message,
+            color: 'brown',
+            background: '#f8a4a4',
+            timer: 2000
+          });
+        }
+      )
+    }
   }
 }

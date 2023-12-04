@@ -65,9 +65,11 @@ export class ProductImageComponent {
       Swal.fire({
         position: 'center',
         icon: 'error',
+        iconColor: 'brown',
         showConfirmButton: false,
-        title: '¡GTIN de producto inválido!',
-        background: '#292A2D',
+        title: '¡GTIN inexistente!',
+        color: 'brown',
+        background: '#f8a4a4',
         timer: 2000
       });
     }
@@ -86,9 +88,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -107,8 +111,10 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Producto actualizado exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -134,9 +140,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -174,8 +182,10 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Imagen actualizada exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -189,9 +199,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -228,12 +240,13 @@ export class ProductImageComponent {
       err => {
         // Muestra mensaje de error
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          toast: true,
+          iconColor: 'brown',
           showConfirmButton: false,
-          text: err.error.message,
-          background: '#F8E8F8',
+          title: err.error.message,
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -251,9 +264,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -271,9 +286,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -328,8 +345,10 @@ export class ProductImageComponent {
             Swal.fire({
               position: 'center',
               icon: 'success',
+              iconColor: '#30871a',
               title: '¡Producto agregado al carrito exitosamente!',
-              background: '#292A2D',
+              color: '#30871a',
+              background: '#e0ffce',
               showConfirmButton: false,
               timer: 2000
             });
@@ -341,9 +360,11 @@ export class ProductImageComponent {
             Swal.fire({
               position: 'center',
               icon: 'error',
+              iconColor: 'brown',
               showConfirmButton: false,
               title: err.error.message,
-              background: '#292A2D',
+              color: 'brown',
+              background: '#f8a4a4',
               timer: 2000
             });
           }
@@ -352,9 +373,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: '¡GTIN inválido!',
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
         console.error('El valor de GTIN es nulo o no válido');
@@ -363,17 +386,68 @@ export class ProductImageComponent {
       Swal.fire({
         position: 'center',
         icon: 'error',
+        iconColor: 'brown',
         showConfirmButton: false,
         title: '¡Cantidad inválida!',
-        background: '#292A2D',
+        color: 'brown',
+        background: '#f8a4a4',
         timer: 2000
       });
     }
   }
 
-  showCart(event: Event) {
-    event.preventDefault();  
-    this.router.navigate(['cart']);
+  comprarAhora(){
+    if (!isNaN(this.quantity) && this.quantity >= 1) {
+      if (this.gtin) {
+        const nuevoCart = {
+          rfc: this.rfc,
+          gtin: this.gtin,
+          quantity: this.quantity
+        };
+  
+        this.cartService.addToCart(nuevoCart).subscribe(
+          res => {
+            this.router.navigate(['cart/' + this.rfc]);
+            console.log(res); // Puedes imprimir la respuesta del servicio si lo deseas.
+          },
+          err => {
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              iconColor: 'brown',
+              showConfirmButton: false,
+              title: err.error.message,
+              color: 'brown',
+              background: '#f8a4a4',
+              timer: 2000
+            });
+          }
+        );
+      } else {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          iconColor: 'brown',
+          showConfirmButton: false,
+          title: '¡GTIN inválido!',
+          color: 'brown',
+          background: '#f8a4a4',
+          timer: 2000
+        });
+        console.error('El valor de GTIN es nulo o no válido');
+      }
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        iconColor: 'brown',
+        showConfirmButton: false,
+        title: '¡Cantidad inválida!',
+        color: 'brown',
+        background: '#f8a4a4',
+        timer: 2000
+      });
+    }
   }
 }
 
