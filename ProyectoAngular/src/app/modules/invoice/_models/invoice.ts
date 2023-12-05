@@ -7,6 +7,6 @@ export class Invoice{
   subtotal: number = 0;
   taxes: number = 0;
   total: number = 0;
-  created_at: Date = new Date();
+  created_at: string = "";
   status: number = 0;
 }

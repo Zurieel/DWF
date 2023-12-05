@@ -79,6 +79,35 @@ export class BuyingComponent {
     )
   }
 
+  generateInvoice(rfc: string){
+    
+    this.invoiceService.generateInvoice(rfc).subscribe(
+      res => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: '¡Factura generada exitosamente!',
+          background: '#292A2D',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      },  
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          iconColor: 'brown',
+          showConfirmButton: false,
+          title: 'aqui esta el error',
+          color: 'brown',
+          background: '#f8a4a4',
+          timer: 2000
+        });
+      }
+    )
+  }
+
   async confirmPurchase(){
 
     let result = await Swal.fire({
@@ -108,7 +137,7 @@ export class BuyingComponent {
         showConfirmButton: false
       })
 
-      Swal.fire({
+      result = await Swal.fire({
         icon: 'success',
         iconColor: '#30871a',
         background: '#e0ffce',
@@ -118,7 +147,7 @@ export class BuyingComponent {
         timer: 2500,
         showConfirmButton: false
       })
-      
+
       this.router.navigate(['invoice/' + this.rfc]);
     }
 

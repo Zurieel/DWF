@@ -59,8 +59,7 @@ h1{
 }
   
 .dropdown-item:hover{
-    color: white !important;
-    background-color: #43a02c;
+    background-color: #a6de98;
 }
 
 .form-button{

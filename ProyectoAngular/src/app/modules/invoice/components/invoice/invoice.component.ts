@@ -31,6 +31,7 @@ export class InvoiceComponent {
     
     this.invoiceService.generateInvoice(rfc).subscribe(
       res => {
+        console.log(res)
       },  
       err => {
         // muestra mensaje de error
@@ -39,7 +40,7 @@ export class InvoiceComponent {
           icon: 'error',
           iconColor: 'brown',
           showConfirmButton: false,
-          title: err.error.message,
+          title: 'aqui esta el error',
           color: 'brown',
           background: '#f8a4a4',
           timer: 2000

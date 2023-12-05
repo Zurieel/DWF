@@ -24,6 +24,6 @@ export class InvoiceService {
 
   /* REQUERIMIENTO 4. Implementar servicio Invoice - función generateInvoice() */
   generateInvoice(rfc: string) {
-    return this.http.post(this.url + this.route + `/${rfc}`, null);
+    return this.http.post(this.url + this.route + "/" + rfc, null);
   }
-}
+} 
