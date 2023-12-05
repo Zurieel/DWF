@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -407,7 +407,7 @@ export class ProductImageComponent {
   
         this.cartService.addToCart(nuevoCart).subscribe(
           res => {
-            this.router.navigate(['cart/' + this.rfc]);
+            this.router.navigate(['buying/' + this.rfc]);
             console.log(res); // Puedes imprimir la respuesta del servicio si lo deseas.
           },
           err => {
@@ -449,5 +449,6 @@ export class ProductImageComponent {
       });
     }
   }
+
 }
 

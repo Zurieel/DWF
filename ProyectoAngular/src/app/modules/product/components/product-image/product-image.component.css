@@ -45,7 +45,7 @@ td{
 
 .product-title{
     text-align: center;
-    color: #30871a;
+    color: rgb(55, 128, 55);
     font-size: 55px;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
     background-color: transparent;
@@ -91,11 +91,6 @@ td{
 
 .card .sub-description{
     margin-left: 25px;
-}
-
-.card .subtitle{
-    color: #30871a;
-    margin-top: 12px;
 }
 
 .upload-image{
@@ -150,7 +145,7 @@ td{
 }
 
 .price{
-    color: #30871a;
+    color: rgb(55, 128, 55);
     font-size: 40px;
     font-weight: 700;
 }

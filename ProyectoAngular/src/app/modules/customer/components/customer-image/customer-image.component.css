@@ -1,6 +1,6 @@
 
 th{
-    color: #30871a;
+    color: rgb(55, 128, 55);
     font-size: 27px;
     font-weight: 800;
     text-align: start;
@@ -34,18 +34,9 @@ h5{
 }
 
 .edit-customer-image{
-    color: #30871a;
+    color: rgb(55, 128, 55);
     cursor: pointer;
     margin-bottom: 16px;
-}
-
-.customer-title{
-    text-align: center;
-    color: #30871a;;
-    font-size: 55px;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
-    border: none;
-    margin-bottom: 15px;
 }
 
 .upload-image{

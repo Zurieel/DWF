@@ -3,12 +3,11 @@
 }
 
 .btn.btn-delete-cart{
-    background-color: brown;
     width: auto;
 }
 
 .btn.btn-delete-product{
-    background-color:brown;
+    background-color: rgb(55, 128, 55);
 }
 
 .card.cart-image{
@@ -23,7 +22,7 @@
     height: auto;
 }
 
-.vertical-center {
+.vertical-center{
     vertical-align: middle;
 }
 

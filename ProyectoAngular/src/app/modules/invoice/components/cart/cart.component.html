@@ -13,23 +13,24 @@
 
   <div class="row">
     <!-- Eliminar Carrito -->
-    <button type="button" class="btn btn-delete-cart col-md-2" (click)="eliminarCarrito(rfc)">
+    <button type="button" class="btn btn-delete-cart col-md-2" (click)="deleteCart(rfc)">
       <i class="ph ph-trash icon-text-button"></i>
         Vaciar Carrito
     </button>
 
     <div class="col-md"></div>
 
-    <button type="button" class="btn btn-buy-cart col-md-2">
+    <button type="button" class="btn btn-buy-cart col-md-2" (click)="redirect(rfc)">
       <i class="ph ph-credit-card icon-text-button"></i>
         Comprar Carrito
     </button>
+
   </div>
 
   <br><br>
 
-  <p class="h1-text" style="font-size: 55px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Mi Carrito</p>
-
+  <h1>Mi Carrito</h1>
+  
   <div class="card">
 
     <div class="card-body">
@@ -41,7 +42,7 @@
               <th>Precio</th>
               <th>Cantidad</th>
               <th>Total</th>
-              <th>Más</th>
+              <th></th>
             </tr>
           </thead>
           <tbody class="table-body">
@@ -52,7 +53,7 @@
               <td class="vertical-center">{{product.product.price | currency: 'USD'}}</td>
               <td class="vertical-center">{{product.quantity}}</td>
               <td class="vertical-center">{{product.product.price * product.quantity | currency: 'USD'}}</td>
-              <td class="vertical-center"><button class="btn btn-delete-product" (click)="quitaProducto(product.cart_id)"><i class="ph ph-trash"></i></button></td>
+              <td class="vertical-center"><button class="btn btn-delete-product" (click)="deleteProduct(product.cart_id)"><i class="ph ph-trash"></i></button></td>
               </tr>   
             </ng-container>
           </tbody>

@@ -15,8 +15,6 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
 
   categories: Category[] = [];
-  category: any | Category = new Category(); 
-
   rfc: string = 'SAAI920101A01';
 
   constructor(

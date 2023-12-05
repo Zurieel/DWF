@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../_services/cart.service';
 import { DtoCartDetails } from '../../_dtos/dto-cart-details';
+import { Router } from '@angular/router';
 
 import Swal from'sweetalert2'; // sweetalert
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -18,12 +17,9 @@ export class CartComponent {
   rfc: string = 'SAAI920101A01';
   cart: DtoCartDetails[] = []; 
 
-  submitted = false; // indica si se envió el formulario
-
   constructor(
     private cartService: CartService,
-    private route: ActivatedRoute,
-    private router: Router,
+    private router: Router, // redirigir a otro componente
   ) {}
 
   ngOnInit(){
@@ -52,8 +48,7 @@ export class CartComponent {
     )
   }
 
-
-  async eliminarCarrito(rfc: string) {
+  async deleteCart(rfc: string) {
 
     if(this.cart.length != 0){
 
@@ -73,7 +68,7 @@ export class CartComponent {
   
       if(result.isConfirmed){
   
-        this.cartService.deleteCart("/"+rfc).subscribe(
+        this.cartService.deleteCart("/" + rfc).subscribe(
           res => {
             Swal.fire({
               position: 'center',
@@ -106,7 +101,7 @@ export class CartComponent {
     }
   }
 
-  async quitaProducto(id: number){
+  async deleteProduct(id: number){
 
     const result = await Swal.fire({
       position: 'center',
@@ -154,5 +149,9 @@ export class CartComponent {
         }
       )
     }
+  }
+
+  redirect(rfc: string){
+    this.router.navigate(['buying/' + rfc]);
   }
 }

@@ -8,12 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { ItemComponent } from './components/item/item.component';
+import { BuyingComponent } from './components/buying/buying.component';
 
 @NgModule({
   declarations: [
     CartComponent,
     InvoiceComponent,
-    ItemComponent
+    ItemComponent,
+    BuyingComponent
   ],
   imports: [
     CommonModule,

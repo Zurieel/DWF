@@ -1,0 +1,52 @@
+h2{
+    color: #2a6d19;
+    margin: auto;
+}
+
+h5{
+    margin: 15px;
+}
+
+h6{
+    margin: 15px;
+}
+
+.card{
+    padding: 10px;
+}
+
+.card-header{
+    background-color: #a6de98;
+    border: none;
+    text-align: center;
+}
+
+.card.customer-information{
+    margin-top: 20px;
+    height: 390px;
+}
+
+.product-image{
+    max-width: 70px;
+    max-height: 70px; 
+    width: auto;
+    height: auto;
+}
+
+.table-container {
+    max-height: 260px; /* Establece la altura máxima según tus preferencias */
+    overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
+  }
+
+.row.bills{
+    text-align: center;
+    margin-top: 8px;
+}
+
+.row.principal{
+    width: auto;
+}
+
+.vertical-center {
+    vertical-align: middle;
+}

@@ -3,9 +3,7 @@ import { Component } from '@angular/core';
 import { Category } from '../../_models/category';
 import { CategoryService } from '../../_services/category.service';
 import { DtoProductList } from '../../_dtos/dto-product-list';
-import { ProductImage } from '../../_models/product-image';
 import { ProductService } from '../../_services/product.service';
-import { ProductImageService } from '../../_services/product-image.service';
 
 import Swal from'sweetalert2'; // sweetalert
 import { ActivatedRoute } from '@angular/router';
@@ -18,15 +16,13 @@ import { Router } from '@angular/router';
 })
 export class ProductListComponent {
 
-  categories: Category[] = []; 
   category: any | Category = new Category(); 
-
-  productImages: ProductImage[] = [];
   products: DtoProductList[] = []; 
 
   showOverlay: boolean = false;
 
   constructor(
+    private categoryService: CategoryService,
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
@@ -39,13 +35,35 @@ export class ProductListComponent {
     });
   }
 
+  getCategory(category_id: number){
+    this.categoryService.getCategory(category_id).subscribe(
+      res => {
+        this.category = res
+      },
+      err => {
+        // manejar errores
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          iconColor: 'brown',
+          showConfirmButton: false,
+          title: err.error.message,
+          color: 'brown',
+          background: '#f8a4a4',
+          timer: 2000
+        });
+      }
+    )
+  }
+
   getProductsBySelectedCategory(category_id: number) {
     this.productService.getProductsByCategory(category_id).subscribe(
-      (res) => {
+      res => {
         this.products = res;
+        this.getCategory(category_id);
         console.log(this.products);
       },
-      (err) => {
+      err => {
         // manejar errores
         Swal.fire({
           position: 'center',

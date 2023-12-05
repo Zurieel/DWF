@@ -1,3 +1,10 @@
+h1{ 
+    color: rgb(55, 128, 55);
+    font-size: 55px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
 .body-content{
     max-width: 1280px;
@@ -16,11 +23,12 @@
 }
 
 .btn-dropdown{
-    background-color: #343A40;
+    border: none;
+    background-color: rgb(55, 128, 55);
 }
 
 .btn-dropdown:hover{
-    background-color: #343A40;
+    background-color: rgb(68, 122, 68);
 }
 
 .d-flex .btn{
@@ -41,28 +49,18 @@
     border: none;
 }
 
+.dropdown-menu{
+    background-color: rgb(55, 128, 55);
+}
+
 .dropdown-item{
-    color: white !important;
+    color: white;
     cursor: pointer;
 }
   
 .dropdown-item:hover{
     color: white !important;
     background-color: #43a02c;
-  }
-
-.edit-item{
-    color:#091F92 !important;
-}
-
-.enable-item{
-    color:#43a02c !important;
-    cursor: pointer;
-}
-
-.disable-item{
-    color: rgb(255, 0, 0) !important;
-    cursor: pointer;
 }
 
 .form-button{

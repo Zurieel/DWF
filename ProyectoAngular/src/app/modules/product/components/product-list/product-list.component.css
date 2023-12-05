@@ -1,4 +1,3 @@
-
 .card.principal{
     border: none;
 }
@@ -37,7 +36,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(68, 122, 68, 0.919);; 
+    background-color: rgba(55, 128, 55, 0.919); 
     display: flex;
     flex-direction: column;
     align-items: center;
