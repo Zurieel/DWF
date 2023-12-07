@@ -16,6 +16,7 @@ export class CategoryComponent {
 
   categories: Category[] = [];
   categoryUpdated: number = 0;
+  numbers: string[] = Array.from({ length: 20 }, (_, index) => ('0' + (40 + index + 1)).slice(-3));
 
   form = this.formBuilder.group({
     code: ["", [Validators.required]],

@@ -7,7 +7,7 @@
         <div *ngFor="let product of products" class="col-md-3 mb-2 px-1">
           <div *ngIf="product.status === 1">
             <div class="card product-card" (mouseover)="showOverlay = true" (mouseout)="showOverlay = false" (click)="showProduct(product.gtin)">
-              <img class="product-image" [src]="'assets/imagenes/' + product.image || 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto">
+              <img class="product-image" [src]="product.image ? 'assets/imagenes/' + product.image : 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto">
               <div *ngIf="showOverlay" class="overlay">
                 <div class="overlay-content">
                   <div class="product-name">{{ product.product }}</div>

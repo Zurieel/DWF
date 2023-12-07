@@ -13,7 +13,6 @@ import Swal from'sweetalert2'; // sweetalert
 
 export class CartComponent {
 
-  // formulario de registro
   rfc: string = 'SAAI920101A01';
   cart: DtoCartDetails[] = []; 
 
@@ -23,11 +22,11 @@ export class CartComponent {
   ) {}
 
   ngOnInit(){
-    this.getCart(this.rfc);
+    this.getCart();
   }
   
-  getCart(rfc: string){
-    this.cartService.getCart(rfc).subscribe(
+  getCart(){
+    this.cartService.getCart(this.rfc).subscribe(
       (res) => {
         this.cart = res; // Asigna la respuesta a this.cart
         console.log(this.cart);
@@ -81,7 +80,7 @@ export class CartComponent {
               timer: 2000
             });
     
-            this.getCart(this.rfc);    
+            this.getCart();    
           },
           err => {
             // muestra mensaje de error
@@ -132,7 +131,7 @@ export class CartComponent {
             timer: 2000
           });
 
-          this.getCart(this.rfc);
+          this.getCart();
 
         },
         err => {

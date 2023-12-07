@@ -146,8 +146,6 @@
                         <ng-container *ngFor="let category of categories">
                             <option *ngIf="category.status == 1" [ngValue]="category.category_id">{{ category.category }}</option>
                         </ng-container>
-                        <!-- Nueva Categoría -->
-                        <option value="nueva">Nueva Categoría</option>
                       </select>
                     <div *ngIf="form.controls['category_id'].errors && submitted">
                       <small class="text-danger">Por favor, seleccione una categoría</small>

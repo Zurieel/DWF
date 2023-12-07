@@ -1,4 +1,4 @@
-<h1>Mis Compras</h1>
+<h1>Facturas</h1>
 
 <div class="card">
     <!-- Table content --> 
@@ -8,6 +8,7 @@
                 <thead>
                     <tr class="table-dark">
                         <th>No.</th>
+                        <th>RFC</th>
                         <th>Fecha</th>
                         <th>Total</th>
                         <th>Más</th>
@@ -16,6 +17,7 @@
                 <tbody class="table-body">
                     <tr *ngFor="let invoice of invoices" >
                         <td>{{ invoice.invoice_id }}</td>
+                        <td>{{ invoice.rfc }}</td>
                         <td>{{ invoice.created_at | date:'yyyy-MM-dd'}}</td>
                         <td>{{ invoice.total | currency: 'USD' }}</td>
                         <td>

@@ -48,7 +48,7 @@
           <tbody class="table-body">
             <ng-container *ngFor="let product of cart">
               <tr>
-              <td><img class="product-image" [src]="'assets/imagenes/' + product.image || 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto"></td>
+              <td><img class="product-image" [src]="product.image ? 'assets/imagenes/' + product.image : 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto"></td>
               <td class="vertical-center">{{product.product.product}}</td>
               <td class="vertical-center">{{product.product.price | currency: 'USD'}}</td>
               <td class="vertical-center">{{product.quantity}}</td>

@@ -49,8 +49,12 @@ export class NavbarComponent {
     this.router.navigate(['products/category/' + category_id]);
   }
 
-  showCart(rfc: string) {
-    this.router.navigate(['cart/' + rfc]);
+  showCart() {
+    this.router.navigate(['cart/' + this.rfc]);
+  }
+
+  showInvoices() {
+    this.router.navigate(['invoice/' + this.rfc]);
   }
 
 }

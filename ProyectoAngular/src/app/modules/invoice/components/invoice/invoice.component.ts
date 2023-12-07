@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CartService } from '../../_services/cart.service';
-import { CustomerService } from 'src/app/modules/customer/_services/customer.service';
+import { Invoice } from '../../_models/invoice';
 import { InvoiceService } from '../../_services/invoice.service';
 
 import Swal from'sweetalert2'; 
@@ -15,32 +14,31 @@ import Swal from'sweetalert2';
 export class InvoiceComponent {
 
   rfc: string = 'SAAI920101A01';
-  
+  invoices: Invoice[] = [];
+
   constructor(
-    private cartService: CartService,
-    private customerService: CustomerService,
     private invoiceService: InvoiceService,
     private router: Router
   ) {}
 
   ngOnInit(){
-    this.generateInvoice(this.rfc)
+    this.getInvoices();
   }
 
-  generateInvoice(rfc: string){
-    
-    this.invoiceService.generateInvoice(rfc).subscribe(
+  getInvoices(){
+    this.invoiceService.getInvoices(this.rfc).subscribe(
       res => {
-        console.log(res)
-      },  
-      err => {
+        this.invoices = res;
+        console.log(res);
+      },
+      err =>{
         // muestra mensaje de error
         Swal.fire({
           position: 'center',
           icon: 'error',
           iconColor: 'brown',
           showConfirmButton: false,
-          title: 'aqui esta el error',
+          title: err.error.message,
           color: 'brown',
           background: '#f8a4a4',
           timer: 2000
@@ -48,4 +46,9 @@ export class InvoiceComponent {
       }
     )
   }
+
+  showInvoice(invoice_id: number){
+    this.router.navigate(['invoice/' + invoice_id + '/items']);
+  }
+
 }

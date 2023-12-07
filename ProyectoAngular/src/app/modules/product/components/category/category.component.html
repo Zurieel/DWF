@@ -82,26 +82,7 @@
             <label for="code" class="form-label mt-4">Código <span class="text-danger">*</span> </label>
             <select class="form-select form-edit" formControlName="code" [ngClass]="{'is-invalid': form.controls['code'].errors && submitted}">
               <option value="" disabled selected>Seleccione una opción</option>
-              <option>041</option>
-              <option>042</option>
-              <option>043</option>
-              <option>044</option>
-              <option>045</option>
-              <option>046</option>
-              <option>047</option>
-              <option>048</option>
-              <option>049</option>
-              <option>050</option>
-              <option>051</option>
-              <option>052</option>
-              <option>053</option>
-              <option>054</option>
-              <option>055</option>
-              <option>056</option>
-              <option>057</option>
-              <option>058</option>
-              <option>059</option>
-              <option>060</option>
+              <option *ngFor="let number of numbers" [value]="number">{{ number }}</option>
             </select>
             <div *ngIf="form.controls['code'].errors && submitted">
               <small class="text-danger">Por favor, seleccione una opción.</small>

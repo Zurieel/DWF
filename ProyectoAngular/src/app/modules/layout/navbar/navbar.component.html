@@ -30,6 +30,9 @@
                         <a class="dropdown-item" href="/region">Regiones</a>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <button class="nav-link" (click)="showInvoices()">Mis Compras</button>
+                </li>
             </ul>
 
             <form class="d-flex">
@@ -43,7 +46,7 @@
                 <li class="nav-item dropdown no-arrow mx-1">
                     <a class="nav-link" href="#" id="cartDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="ph ph-shopping-cart i-cart" (click)="showCart(rfc)"></i>
+                        <i class="ph ph-shopping-cart i-cart" (click)="showCart()"></i>
                     </a>
                 </li>
             </ul>

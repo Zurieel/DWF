@@ -9,13 +9,17 @@ import { CartComponent } from './components/cart/cart.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { ItemComponent } from './components/item/item.component';
 import { BuyingComponent } from './components/buying/buying.component';
+import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
+import { AllInvoicesComponent } from './components/all-invoices/all-invoices.component';
 
 @NgModule({
   declarations: [
     CartComponent,
     InvoiceComponent,
     ItemComponent,
-    BuyingComponent
+    BuyingComponent,
+    InvoiceDetailsComponent,
+    AllInvoicesComponent
   ],
   imports: [
     CommonModule,

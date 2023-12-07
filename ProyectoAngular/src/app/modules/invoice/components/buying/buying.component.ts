@@ -16,12 +16,10 @@ import Swal from'sweetalert2';
 })
 export class BuyingComponent {
 
-  rfc: string = 'SAAI920101A01';
-  customer: any | Customer = new Customer();
   cart: DtoCartDetails[] = [];
-
-  subtotal: number = 0;
-  iva: number = 0.1905
+  customer: any | Customer = new Customer();
+  rfc: string = 'SAAI920101A01';
+  total: number = 0;
 
   constructor(
     private cartService: CartService,
@@ -39,7 +37,7 @@ export class BuyingComponent {
     this.cartService.getCart(this.rfc).subscribe(
       res => {
         this.cart = res; // Asigna la respuesta a this.cart
-        this.calculateSubtotal();
+        this.calculateTotal();
         console.log(this.cart);
       },
       err => {
@@ -79,35 +77,6 @@ export class BuyingComponent {
     )
   }
 
-  generateInvoice(rfc: string){
-    
-    this.invoiceService.generateInvoice(rfc).subscribe(
-      res => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: '¡Factura generada exitosamente!',
-          background: '#292A2D',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      },  
-      err => {
-        // muestra mensaje de error
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          iconColor: 'brown',
-          showConfirmButton: false,
-          title: 'aqui esta el error',
-          color: 'brown',
-          background: '#f8a4a4',
-          timer: 2000
-        });
-      }
-    )
-  }
-
   async confirmPurchase(){
 
     let result = await Swal.fire({
@@ -128,9 +97,13 @@ export class BuyingComponent {
     if(result.isConfirmed){
 
       result = await Swal.fire({
+        imageUrl: 'assets/imagenes/loading.gif',
+        imageWidth: 120,
+        imageHeight: 120,
+        imageAlt: 'loading icon',
         background: '#e0ffce',
         color: '#30871a',
-        title: "Efectuando la compra",
+        title: "Realizando la compra...",
         text: "Espera un momento",
         timer: 3000,
         timerProgressBar: true,
@@ -141,27 +114,44 @@ export class BuyingComponent {
         icon: 'success',
         iconColor: '#30871a',
         background: '#e0ffce',
-        title: "¡Compra realizada exitosamente!",
-        text: "Disfruta tus productos :)",
+        title: '¡Compra realizada exitosamente!',
+        text: 'Puedes obtener tu factura en "Mis Compras"',
         color: '#30871a',
-        timer: 2500,
+        timer: 2700,
         showConfirmButton: false
       })
 
-      this.router.navigate(['invoice/' + this.rfc]);
+      this.generateInvoice()
     }
 
   }
 
-  calculateSubtotal() {
-    this.subtotal = this.cart.reduce((total, product) => {
-      return total + product.product.price * product.quantity;
-    }, 0);
+  generateInvoice(){
+    
+    this.invoiceService.generateInvoice(this.rfc).subscribe(
+      res => {
+        this.router.navigate(['/']);
+      },  
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          iconColor: 'brown',
+          showConfirmButton: false,
+          title: 'aqui esta el error',
+          color: 'brown',
+          background: '#f8a4a4',
+          timer: 2000
+        });
+      }
+    )
   }
 
   calculateTotal() {
-    return this.subtotal + this.subtotal * this.iva;
+    this.total = this.cart.reduce((total, product) => {
+      return total + product.product.price * product.quantity;
+    }, 0);
   }
-
 
 }
