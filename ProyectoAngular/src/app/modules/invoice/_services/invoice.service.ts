@@ -15,7 +15,7 @@ export class InvoiceService {
   constructor(private http: HttpClient) { }
 
   getInvoice(id: number) {
-    return this.http.get<Invoice>(this.url + this.route + "/" + id + "/items");
+    return this.http.get<DtoInvoiceList>(this.url + this.route + "/" + id + "/items");
   }
 
   /* REQUERIMIENTO 4. Implementar servicio Invoice - función getInvoices() */

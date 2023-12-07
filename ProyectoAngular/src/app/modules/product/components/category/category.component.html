@@ -1,66 +1,64 @@
-    <!-- Agrega el botón de agregar película -->
-    <button type="button" class="btn btn-add" (click)="showModalForm()">
-      <i class="ph ph-list-plus icon-text-button"></i>
-      Agregar Categoría
-    </button>
+  <!-- Agrega el botón de agregar película -->
+  <button type="button" class="btn btn-add" (click)="showModalForm()">
+    <i class="ph ph-list-plus icon-text-button"></i>
+    Agregar Categoría
+  </button>
 
-    <br><br>
+  <br><br>
 
 
-    <h1>Categorías</h1>
+  <h1>Categorías</h1>
 
-    <div class="card ">
-
-      <div></div>
-        
-        <!-- Table content --> 
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-hover">
-            <thead>
-                <tr class="table-dark">
+  <div class="card">
+      
+    <!-- Table content --> 
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+              <tr>
                 <th>No.</th>
                 <th>Código</th>
                 <th>Categoría</th>
                 <th>Estatus</th>
                 <th>Más</th>
-                </tr>
-            </thead>
-            <tbody class="table-body">
-                <tr *ngFor="let category of categories; let i = index" >
-                <td>{{ i + 1 }}</td>
-                <td>{{ category.code }}</td>
-                <td>{{ category.category }}</td>
-                <td>
-                  <div class="td-status"
-                  [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
-                    {{ category.status == 0 ? "Desactivada" : "Activada" }}
+              </tr>
+          </thead>
+          <tbody class="table-body">
+            <tr *ngFor="let category of categories; let i = index" >
+              <td>{{ i + 1 }}</td>
+              <td>{{ category.code }}</td>
+              <td>{{ category.category }}</td>
+              <td>
+                <div class="td-status"
+                [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
+                  {{ category.status == 0 ? "Desactivada" : "Activada" }}
+                </div>
+              </td>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-dropdown btn-dark" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ph ph-dots-three-circle icon-menu"></i>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item edit-item" (click)="updateCategory(category)">
+                      <i class="ph ph-note-pencil icon-text-ul"></i>Editar
+                    </a>
+                    <a *ngIf="category.status == 0" class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
+                      <i class="ph ph-check-circle"></i> Activar
+                    </a>
+                    <a *ngIf="category.status == 1" class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
+                      <i class="ph ph-x-circle"></i> Desactivar
+                    </a>
                   </div>
-                </td>
-                <td>
-                  <div class="dropdown">
-                    <button class="btn btn-dropdown btn-dark" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="ph ph-dots-three-circle icon-menu"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item edit-item" (click)="updateCategory(category)">
-                        <i class="ph ph-note-pencil icon-text-ul"></i>Editar
-                      </a>
-                      <a *ngIf="category.status == 0" class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
-                        <i class="ph ph-check-circle"></i> Activar
-                      </a>
-                      <a *ngIf="category.status == 1" class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
-                        <i class="ph ph-x-circle"></i> Desactivar
-                      </a>
-                    </div>
-                  </div>
-                </td>
-                </tr>
-            </tbody>
-            </table>
-          </div>
-        </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">

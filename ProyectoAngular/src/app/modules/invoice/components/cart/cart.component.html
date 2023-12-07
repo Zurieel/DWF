@@ -37,7 +37,7 @@
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>
-            <tr class="table-dark">
+            <tr class="table">
               <th colspan="2">Producto</th>
               <th>Precio</th>
               <th>Cantidad</th>
@@ -48,18 +48,17 @@
           <tbody class="table-body">
             <ng-container *ngFor="let product of cart">
               <tr>
-              <td><img class="product-image" [src]="product.image ? 'assets/imagenes/' + product.image : 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto"></td>
-              <td class="vertical-center">{{product.product.product}}</td>
-              <td class="vertical-center">{{product.product.price | currency: 'USD'}}</td>
-              <td class="vertical-center">{{product.quantity}}</td>
-              <td class="vertical-center">{{product.product.price * product.quantity | currency: 'USD'}}</td>
-              <td class="vertical-center"><button class="btn btn-delete-product" (click)="deleteProduct(product.cart_id)"><i class="ph ph-trash"></i></button></td>
+                <td><img class="product-image" [src]="product.image ? 'assets/imagenes/' + product.image : 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto"></td>
+                <td class="vertical-center">{{product.product.product}}</td>
+                <td class="vertical-center">{{product.product.price | currency: 'USD'}}</td>
+                <td class="vertical-center">{{product.quantity}}</td>
+                <td class="vertical-center">{{product.product.price * product.quantity | currency: 'USD'}}</td>
+                <td class="vertical-center"><button class="btn btn-delete-product" (click)="deleteProduct(product.cart_id)"><i class="ph ph-trash"></i></button></td>
               </tr>   
             </ng-container>
           </tbody>
         </table>
       </div>
     </div>
-
   </div>
 </div>

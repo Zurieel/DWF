@@ -77,13 +77,13 @@ export class ProductImageComponent {
   
   getProduct() {
     this.productService.getProduct(this.gtin).subscribe(
-      (res) => {
+      res => {
         this.product = res; // asigna la respuesta de la API a la variable de producto
         this.getCategory(this.product.category_id);
         console.log('Producto obtenido:', this.product);
         this.visualizeImage(this.product.product_id);
       },
-      (err) => {
+      err => {
         // muestra mensaje de error
         Swal.fire({
           position: 'center',

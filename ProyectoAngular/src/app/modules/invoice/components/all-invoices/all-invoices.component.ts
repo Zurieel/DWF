@@ -35,7 +35,6 @@ export class AllInvoicesComponent {
         this.customers.forEach(customer => {
           this.invoiceService.getInvoices(customer.rfc).subscribe(
             invoices => {
-
               invoices.forEach(invoice => {
                 invoice.rfc = customer.rfc;
               });
@@ -63,7 +62,22 @@ export class AllInvoicesComponent {
     );
   }
 
-  showInvoice(invoice_id: number){
+  async showInvoice(invoice_id: number){
+
+    await Swal.fire({
+      imageUrl: 'assets/imagenes/loading.gif',
+      imageWidth: 120,
+      imageHeight: 120,
+      imageAlt: 'loading icon',
+      background: '#e0ffce',
+      color: '#30871a',
+      title: "Generando factura...",
+      text: "Espera un momento",
+      timer: 3000,
+      timerProgressBar: true,
+      showConfirmButton: false
+    })
+
     this.router.navigate(['invoice/' + invoice_id + '/items']);
   }
 

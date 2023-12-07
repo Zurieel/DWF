@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DtoProductList } from '../_dtos/dto-product-list';
+import { DtoProductCategory } from '../_dtos/dto-product-category';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class ProductService {
   }
   
   getProductsByCategory(category_id: number) {
-    return this.http.get<DtoProductList[]>(this.url + this.route + "/category/" + category_id);
+    return this.http.get<DtoProductCategory[]>(this.url + this.route + "/category/" + category_id);
   }
   
   updateProduct(product: any, id: number) {

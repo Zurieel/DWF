@@ -6,6 +6,10 @@ h1{
     text-align: center;
 }
 
+th{
+    background-color: #a6de98 !important;
+}
+
 .body-content{
     max-width: 1280px;
     margin: auto;

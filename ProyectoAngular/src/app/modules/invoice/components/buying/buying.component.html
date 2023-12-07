@@ -39,20 +39,20 @@
                     <tbody class="table-body">
                         <ng-container *ngFor="let product of cart">
                           <tr>
-                          <td><img class="product-image" [src]="product.image ? 'assets/imagenes/' + product.image : 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto"></td>
-                          <td class="vertical-center">{{product.product.product}}</td>
-                          <td class="vertical-center">{{product.product.price | currency: 'USD'}}</td>
-                          <td class="vertical-center">{{product.quantity}}</td>
-                          <td class="vertical-center">{{product.product.price * product.quantity | currency: 'USD'}}</td>
+                            <td><img class="product-image" [src]="product.image ? 'assets/imagenes/' + product.image : 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto"></td>
+                            <td class="vertical-center">{{product.product.product}}</td>
+                            <td class="vertical-center">{{product.product.price | currency: 'USD'}}</td>
+                            <td class="vertical-center">{{product.quantity}}</td>
+                            <td class="vertical-center">{{product.product.price * product.quantity | currency: 'USD'}}</td>
                           </tr>   
                         </ng-container>
                       </tbody>
                 </table>
             </div>
             <div class="row bills">
-                    <div class="col-md-2"></div>
-                    <h6 class="col-md">Envío: Gratis</h6>
-                    <h6 class="col-md">Total: {{ total | currency: 'USD' }}</h6>
+                <div class="col-md-2"></div>
+                <h6 class="col-md">Envío: Gratis</h6>
+                <h6 class="col-md">Total: {{ total | currency: 'USD' }}</h6>
             </div>
         </div>
     </div>

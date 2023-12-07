@@ -159,7 +159,6 @@ export class CustomerImageComponent {
   }
 
   // customer image
-
   updateCustomerImage(image: string){
     let customerImage: CustomerImage = new CustomerImage();
     customerImage.customer_image_id = this.customer.image.customer_image_id;

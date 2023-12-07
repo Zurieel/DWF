@@ -11,7 +11,7 @@ import { InvoiceComponent } from './modules/invoice/components/invoice/invoice.c
 import { InvoiceDetailsComponent } from './modules/invoice/components/invoice-details/invoice-details.component';
 import { ProductComponent } from './modules/product/components/product/product.component';
 import { ProductImageComponent } from './modules/product/components/product-image/product-image.component';
-import { ProductListComponent } from './modules/product/components/product-list/product-list.component';
+import { ProductCategoryComponent } from './modules/product/components/product-category/product-category.component';
 import { RegionComponent } from './modules/customer/components/region/region.component';
 import { PrincipalComponent } from './modules/principal/components/principal/principal.component';
 
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: "product", component: ProductComponent },
   { path: "product/:gtin", component: ProductImageComponent },
   { path: "region", component: RegionComponent },
-  { path: "products/category/:category_id", component: ProductListComponent },
+  { path: "products/category/:category_id", component: ProductCategoryComponent },
   { path: "", component: PrincipalComponent },
 ];
 

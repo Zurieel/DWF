@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+
 import { DtoProductList } from '../../_dtos/dto-product-list';
 import { Category } from '../../_models/category';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ProductService } from '../../_services/product.service';
 import { CategoryService } from '../../_services/category.service';
+import { ProductService } from '../../_services/product.service';
 
 import Swal from'sweetalert2'; // sweetalert
-import { Router } from '@angular/router';
 
 declare var $: any; // jquery
 
@@ -16,7 +17,9 @@ declare var $: any; // jquery
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
+  
   products: DtoProductList[] = []; 
+  category: any | Category = new Category();
   categories: Category[] = []; 
 
   // formulario de registro
@@ -84,7 +87,6 @@ export class ProductComponent {
   }
 
   // CRUD product
-
   disableProduct(id: number){
     this.productService.disableProduct(id).subscribe(
       res => {
@@ -177,7 +179,6 @@ export class ProductComponent {
   }
 
   // catalogues
-
   getCategories(){
     this.categoryService.getCategories().subscribe(
       res => {
@@ -197,6 +198,27 @@ export class ProductComponent {
         });
       }
     );
+  }
+
+  getCategory(id: number){
+    this.categoryService.getCategory(id).subscribe(
+      res => {
+        this.category = res;
+      },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          iconColor: 'brown',
+          showConfirmButton: false,
+          title: err.error.message,
+          color: 'brown',
+          background: '#f8a4a4',
+          timer: 2000
+        });
+      }
+    )
   }
 
   // modals 

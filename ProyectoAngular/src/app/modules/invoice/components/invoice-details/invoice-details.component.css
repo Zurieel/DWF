@@ -1,0 +1,41 @@
+tbody{
+    border-width: 1px;
+}
+
+thead{
+    border-width: 1px;
+    border-color: #a6de98;
+}
+
+td{
+    border: none;
+}
+
+th{
+    font-weight: 500;
+}
+
+.card.body{
+    border-top: none;
+    border-radius: 0;
+}
+
+.card.content{
+    margin-top: 5px;
+    border: none;
+}
+
+.card-header{
+    background-color: #a6de98;
+    border: none;
+    text-align: center;
+}
+
+.card.principal{
+    border-width: 1px;
+    border-color: black;
+}
+
+.section{
+    margin: 10px;
+}

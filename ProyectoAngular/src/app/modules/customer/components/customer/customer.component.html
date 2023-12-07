@@ -15,7 +15,7 @@
           <div class="table-responsive">
             <table class="table table-hover">
             <thead>
-                <tr class="table-dark">
+                <tr>
                     <th>No.</th>
                     <th>Nombre</th>
                     <th>RFC</th>
@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody class="table-body">
-                <tr *ngFor="let customer of customers; let i = index" >
+              <tr *ngFor="let customer of customers; let i = index" >
                 <td>{{ i + 1 }}</td>
                 <td>{{ customer.name + " " + customer.surname }}</td>
                 <td>{{ customer.rfc }}</td>
@@ -52,7 +52,7 @@
                         </div>
                       </div>
                     </td>
-                    </tr>
+                  </tr>
                 </tbody>
                 </table>
               </div>

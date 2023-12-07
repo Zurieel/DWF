@@ -11,4 +11,5 @@ export class Item{
     taxes: number = 0;
     total: number = 0;
     status: number = 0;
+
 }
