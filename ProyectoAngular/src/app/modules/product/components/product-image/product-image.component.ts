@@ -6,6 +6,7 @@ import { Product } from '../../_models/product';
 import { Category } from '../../_models/category';
 import { ProductImage } from '../../_models/product-image';
 
+import { CartService } from '../../../invoice/_services/cart.service';
 import { ProductService } from '../../_services/product.service';
 import { CategoryService } from '../../_services/category.service';
 import { ProductImageService } from '../../_services/product-image.service';
@@ -30,6 +31,9 @@ export class ProductImageComponent {
   categories: Category[] = []; // lista de categorias
   category: any | Category = new Category(); // datos de la categoria del producto
 
+  quantity: number = 1;
+  rfc: string = 'SAAI920101A01'; 
+
   // formulario de actualización
   form = this.formBuilder.group({
     product: ["", [Validators.required]],
@@ -43,13 +47,13 @@ export class ProductImageComponent {
   submitted = false; // indica si se envió el formulario
 
   constructor(
+    private cartService: CartService,
     private productService: ProductService, // servicio product de API
-    public ProductImageService: ProductImageService, // servicio product image de API
+    public productImageService: ProductImageService, // servicio product image de API
     private formBuilder: FormBuilder, // formulario
     private categoryService: CategoryService, // servicio category de API
     private route: ActivatedRoute, // recupera parámetros de la url
     private router: Router, // redirigir a otro componente
-
     private service: NgxPhotoEditorService
   ){}
 
@@ -61,9 +65,11 @@ export class ProductImageComponent {
       Swal.fire({
         position: 'center',
         icon: 'error',
+        iconColor: 'brown',
         showConfirmButton: false,
-        title: 'GTIN de producto inválido',
-        background: '#292A2D',
+        title: '¡GTIN inexistente!',
+        color: 'brown',
+        background: '#f8a4a4',
         timer: 2000
       });
     }
@@ -71,20 +77,22 @@ export class ProductImageComponent {
   
   getProduct() {
     this.productService.getProduct(this.gtin).subscribe(
-      (res) => {
+      res => {
         this.product = res; // asigna la respuesta de la API a la variable de producto
         this.getCategory(this.product.category_id);
         console.log('Producto obtenido:', this.product);
         this.visualizeImage(this.product.product_id);
       },
-      (err) => {
+      err => {
         // muestra mensaje de error
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -103,8 +111,10 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Producto actualizado exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -130,9 +140,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -164,14 +176,16 @@ export class ProductImageComponent {
     productImage.product_id = this.product.product_id; // Asigna el product_id del producto actual
     productImage.image = image;
   
-    this.ProductImageService.uploadProductImage(productImage).subscribe(
+    this.productImageService.uploadProductImage(productImage).subscribe(
       res => {
         // Muestra mensaje de confirmación
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: '¡Imagen actualizada exitoamente!',
-          background: '#292A2D',
+          iconColor: '#30871a',
+          title: '¡Imagen actualizada exitosamente!',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -185,9 +199,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -195,7 +211,7 @@ export class ProductImageComponent {
   }
 
   visualizeImage(product_id: number) {
-    this.ProductImageService.getProductImage(product_id).subscribe(
+    this.productImageService.getProductImage(product_id).subscribe(
       (productImages: ProductImage[]) => {
         productImages.forEach(image => {
           // Construye la URL completa de la imagen
@@ -211,7 +227,7 @@ export class ProductImageComponent {
   }
 
   deleteImage(productId: number) {
-    this.ProductImageService.deleteProductImage(productId).subscribe(
+    this.productImageService.deleteProductImage(productId).subscribe(
       (response) => {
         // Image has been successfully deleted.
         console.log('Imagen eliminada:', response);
@@ -224,12 +240,13 @@ export class ProductImageComponent {
       err => {
         // Muestra mensaje de error
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'error',
-          toast: true,
+          iconColor: 'brown',
           showConfirmButton: false,
-          text: err.error.message,
-          background: '#F8E8F8',
+          title: err.error.message,
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -237,7 +254,6 @@ export class ProductImageComponent {
   }
   
   // catalogues
-
   getCategories(){
     this.categoryService.getCategories().subscribe(
       res => {
@@ -248,9 +264,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -258,7 +276,6 @@ export class ProductImageComponent {
   }
   
   // auxiliary functions
-
   getCategory(id: number){
     this.categoryService.getCategory(id).subscribe(
       res => {
@@ -269,9 +286,11 @@ export class ProductImageComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -293,5 +312,143 @@ export class ProductImageComponent {
   redirect(url: string[]){
     this.router.navigate(url);
   }
+
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
+  increaseQuantity(): void {
+    this.quantity++;
+  }
+
+  updateQuantity(value: string): void {
+    const parsedValue = parseInt(value, 10);
+    if (!isNaN(parsedValue) && parsedValue >= 1) {
+      this.quantity = parsedValue;
+    }
+  }
+
+  agregarAlCarrito() {
+  
+    if (!isNaN(this.quantity) && this.quantity >= 1) {
+      if (this.gtin) {
+        const nuevoCart = {
+          rfc: this.rfc,
+          gtin: this.gtin,
+          quantity: this.quantity
+        };
+  
+        this.cartService.addToCart(nuevoCart).subscribe(
+          res => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              iconColor: '#30871a',
+              title: '¡Producto agregado al carrito exitosamente!',
+              color: '#30871a',
+              background: '#e0ffce',
+              showConfirmButton: false,
+              timer: 2000
+            });
+  
+            console.log(res); // Puedes imprimir la respuesta del servicio si lo deseas.
+  
+          },
+          err => {
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              iconColor: 'brown',
+              showConfirmButton: false,
+              title: err.error.message,
+              color: 'brown',
+              background: '#f8a4a4',
+              timer: 2000
+            });
+          }
+        );
+      } else {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          iconColor: 'brown',
+          showConfirmButton: false,
+          title: '¡GTIN inválido!',
+          color: 'brown',
+          background: '#f8a4a4',
+          timer: 2000
+        });
+        console.error('El valor de GTIN es nulo o no válido');
+      }
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        iconColor: 'brown',
+        showConfirmButton: false,
+        title: '¡Cantidad inválida!',
+        color: 'brown',
+        background: '#f8a4a4',
+        timer: 2000
+      });
+    }
+  }
+
+  comprarAhora(){
+    if (!isNaN(this.quantity) && this.quantity >= 1) {
+      if (this.gtin) {
+        const nuevoCart = {
+          rfc: this.rfc,
+          gtin: this.gtin,
+          quantity: this.quantity
+        };
+  
+        this.cartService.addToCart(nuevoCart).subscribe(
+          res => {
+            this.router.navigate(['buying/' + this.rfc]);
+            console.log(res); // Puedes imprimir la respuesta del servicio si lo deseas.
+          },
+          err => {
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              iconColor: 'brown',
+              showConfirmButton: false,
+              title: err.error.message,
+              color: 'brown',
+              background: '#f8a4a4',
+              timer: 2000
+            });
+          }
+        );
+      } else {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          iconColor: 'brown',
+          showConfirmButton: false,
+          title: '¡GTIN inválido!',
+          color: 'brown',
+          background: '#f8a4a4',
+          timer: 2000
+        });
+        console.error('El valor de GTIN es nulo o no válido');
+      }
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        iconColor: 'brown',
+        showConfirmButton: false,
+        title: '¡Cantidad inválida!',
+        color: 'brown',
+        background: '#f8a4a4',
+        timer: 2000
+      });
+    }
+  }
+
 }
 

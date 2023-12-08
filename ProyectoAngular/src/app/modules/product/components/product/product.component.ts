@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+
 import { DtoProductList } from '../../_dtos/dto-product-list';
 import { Category } from '../../_models/category';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ProductService } from '../../_services/product.service';
 import { CategoryService } from '../../_services/category.service';
+import { ProductService } from '../../_services/product.service';
 
 import Swal from'sweetalert2'; // sweetalert
-import { Router } from '@angular/router';
 
 declare var $: any; // jquery
 
@@ -16,7 +17,9 @@ declare var $: any; // jquery
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
+  
   products: DtoProductList[] = []; 
+  category: any | Category = new Category();
   categories: Category[] = []; 
 
   // formulario de registro
@@ -43,7 +46,7 @@ export class ProductComponent {
     this.getProducts();
   }
 
-  ngOnSubmit(){
+  ngOnSubmit(){ 
     // valida el formulario
     this.submitted = true;
     if(this.form.invalid) return;
@@ -55,8 +58,10 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Producto registrado exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -70,9 +75,11 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -80,7 +87,6 @@ export class ProductComponent {
   }
 
   // CRUD product
-
   disableProduct(id: number){
     this.productService.disableProduct(id).subscribe(
       res => {
@@ -88,8 +94,10 @@ export class ProductComponent {
         Swal.fire({
           position:'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Producto desactivado exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -101,9 +109,11 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -117,8 +127,10 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          iconColor: '#30871a',
           title: '¡Producto activado exitosamente!',
-          background: '#292A2D',
+          color: '#30871a',
+          background: '#e0ffce',
           showConfirmButton: false,
           timer: 2000
         });
@@ -130,9 +142,11 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -149,9 +163,11 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
@@ -163,7 +179,6 @@ export class ProductComponent {
   }
 
   // catalogues
-
   getCategories(){
     this.categoryService.getCategories().subscribe(
       res => {
@@ -174,17 +189,39 @@ export class ProductComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',
+          iconColor: 'brown',
           showConfirmButton: false,
           title: err.error.message,
-          background: '#292A2D',
+          color: 'brown',
+          background: '#f8a4a4',
           timer: 2000
         });
       }
     );
   }
 
-  // modals 
+  getCategory(id: number){
+    this.categoryService.getCategory(id).subscribe(
+      res => {
+        this.category = res;
+      },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          iconColor: 'brown',
+          showConfirmButton: false,
+          title: err.error.message,
+          color: 'brown',
+          background: '#f8a4a4',
+          timer: 2000
+        });
+      }
+    )
+  }
 
+  // modals 
   showModalForm(){
     this.form.reset();
     this.submitted = false;

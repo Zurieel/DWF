@@ -1,0 +1,113 @@
+
+  <!-- Agrega el botón de agregar película -->
+  <button type="button" class="btn btn-add" (click)="showModalForm()">
+    <i class="ph ph-list-plus icon-text-button"></i>
+    Agregar Región
+  </button>
+
+  <br><br>
+
+
+  <h1>Regiones</h1>
+  
+  <div class="card ">      
+    <!-- Table content --> 
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+              <tr>
+                <th>No.</th>
+                <th>Código</th>
+                <th>Región</th>
+                <th>Estatus</th>
+                <th>Más</th>
+              </tr>
+          </thead>
+          <tbody class="table-body">
+            <tr *ngFor="let region of regions; let i = index" >
+              <td>{{ i + 1 }}</td>
+              <td>{{ region.code }}</td>
+              <td>{{ region.region }}</td>
+              <td>
+                <div class="td-status"
+                [ngClass]="{'td-status-enable': region.status == 1, 'td-status-disable': region.status == 0}" >
+                  {{ region.status == 0 ? "Desactivada" : "Activada" }}
+                </div>
+              </td>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-dropdown btn-dark" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ph ph-dots-three-circle icon-menu"></i>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item edit-item" (click)="updateRegion(region)">
+                      <i class="ph ph-note-pencil icon-text-ul"></i>Editar
+                    </a>
+                    <a *ngIf="region.status == 0" class="dropdown-item enable-item" (click)="enableRegion(region.region_id)">
+                      <i class="ph ph-check-circle"></i> Activar
+                    </a>
+                    <a *ngIf="region.status == 1" class="dropdown-item disable-item" (click)="disableRegion(region.region_id)">
+                      <i class="ph ph-x-circle"></i> Desactivar
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">{{ regionUpdated == 0? "Nueva": "Actualizar" }} Región</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span>
+          </button>
+        </div>
+
+      <div class="modal-body">
+
+        <!-- form  -->
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+          <!-- region  -->
+          <div class="form-group">
+            <label for="region">Región <span class="text-danger">*</span> </label>
+            <input type="text" class="form-control form-edit" formControlName="region" id="region" placeholder="Nombre de la región..." 
+              [ngClass]="{'is-invalid': form.controls['region'].errors && submitted}" >
+            <div *ngIf="form.controls['region'].errors && submitted">
+              <small class="text-danger">Favor de ingresar una región válida</small>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- code  -->
+          <div class="form-group">
+            <label for="code">Código <span class="text-danger">*</span> </label>
+            <input type="text" class="form-control form-edit" formControlName="code" id="code" placeholder="Código de la región..." 
+              [ngClass]="{'is-invalid': form.controls['code'].errors && submitted}" >
+            <div *ngIf="form.controls['code'].errors && submitted">
+              <small class="text-danger">Favor de ingresar un código de región válido</small>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- button  -->
+          <div class="form-button">
+            <button type="submit" class="btn btn-primary btn-form">Guardar</button>
+          </div>
+
+        </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>

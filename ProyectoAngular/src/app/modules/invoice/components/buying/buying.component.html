@@ -1,0 +1,59 @@
+<h1>Confirmar Compra</h1>
+
+<div class="row principal">
+
+    <div class="col-md-4">  
+
+        <button class="btn btn-continue" (click)="confirmPurchase()">Continuar</button>
+
+        <div class="card customer-information row">
+
+            <div class="card-header">
+                <h2>Datos de Compra</h2>
+            </div>
+    
+            <h5>Pedido de: {{customer.name + " " + customer.surname}}</h5>
+    
+            <h5>Enviar a: {{customer.address}}</h5>
+    
+            <h5>Método de pago: Tarjeta de débito
+                <h6>Banco: Santander</h6>
+                <h6>Numero de tarjeta: 1547224865723540</h6>
+                <h6>CVV: ***</h6>
+            </h5>
+        </div>
+    
+
+    </div>
+
+    <div class="card invoice col-md ms-3">
+
+        <div class="card-header">
+            <h2>Resumen de Compra</h2>
+        </div>
+
+        <div>
+            <h6>Productos:</h6>
+            <div class="table-responsive table-container">
+                <table class="table table-hover">
+                    <tbody class="table-body">
+                        <ng-container *ngFor="let product of cart">
+                          <tr>
+                            <td><img class="product-image" [src]="product.image ? 'assets/imagenes/' + product.image : 'assets/imagenes/productImageNull.jpg'" alt="imagen de producto"></td>
+                            <td class="vertical-center">{{product.product.product}}</td>
+                            <td class="vertical-center">{{product.product.price | currency: 'USD'}}</td>
+                            <td class="vertical-center">{{product.quantity}}</td>
+                            <td class="vertical-center">{{product.product.price * product.quantity | currency: 'USD'}}</td>
+                          </tr>   
+                        </ng-container>
+                      </tbody>
+                </table>
+            </div>
+            <div class="row bills">
+                <div class="col-md-2"></div>
+                <h6 class="col-md">Envío: Gratis</h6>
+                <h6 class="col-md">Total: {{ total | currency: 'USD' }}</h6>
+            </div>
+        </div>
+    </div>
+</div>
