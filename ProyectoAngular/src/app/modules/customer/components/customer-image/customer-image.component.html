@@ -1,0 +1,195 @@
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md">
+                <span class="btn btn-back" (click)="redirect(['customer'])">
+                    <i class="ph ph-arrow-circle-left icon-text-button"></i>
+                    Regresar
+                </span>
+            </div>
+            
+            <div class="col-md">
+                <span class="btn btn-edit" (click)="updateCustomer()">
+                    <i class="ph ph-note-pencil icon-text-button"></i>
+                    Editar Datos
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    
+    <div class="card-body">
+        <div class="row principal">
+    
+            <!-- customer image  -->
+        
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body-customer text-center">
+                        <img src="{{ customer.image.image != '' ? customer.image.image: 'assets/imagenes/iconDefault.png' }}" alt="..." class="img-thumbnail customer-image">
+                    </div>
+                    <div class="edit-customer-image text-center">
+                        <label for="uploadImage" class="upload-image">
+                            <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" style="display:none">
+                            <i class="ph ph-note-pencil icon-text-button"></i>
+                            Editar Foto
+                        </label>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- customer data  -->
+        
+            <div class="col-md-8">
+                <div class="card card-body-customer">
+
+                    <h1 class="customer-title">{{ customer.name + " " + customer.surname }}</h1>
+
+                        <div class="table-responsive">
+
+                            <table class="table">
+                            <tbody>
+                                
+                                <tr>
+                                    <div class="row data">
+                                        <th class="col-md data">RFC: <h5>{{ customer.rfc }}</h5></th>
+                                        <th class="col-md data">Correo: <h5>{{ customer.mail }}</h5> </th>
+                                    </div>  
+                                </tr>
+                                    
+                                <tr>
+                                    <div class="row data">
+                                        <th class="col-md data">Región: <h5>{{ region.region }}</h5> </th>
+                                        <th class="col-md data">Dirección: <h5>{{ customer.address }}</h5></th>
+                                    </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+    
+    <!-- Modal form  -->
+      
+    <div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Actualizar Datos</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="modal-body">
+      
+              <!-- form  -->
+      
+              <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      
+                
+                <div class="row">
+    
+                    <!-- name  -->
+    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Nombre <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control form-edit" formControlName="name" id="name" placeholder="Nombre del cliente..." 
+                                [ngClass]="{'is-invalid': form.controls['name'].errors && submitted}" >
+                            <div *ngIf="form.controls['name'].errors && submitted">
+                                <small class="text-danger">Favor de ingresar un nombre válido</small>
+                            </div>
+                        </div>
+                    </div>
+          
+                    <!-- surname  -->
+          
+                    <div class="col-md-6"> 
+                        <div class="form-group">
+                        <label for="surname">Apellidos <span class="text-danger">*</span> </label>
+                        <input type="text" class="form-control form-edit" formControlName="surname" id="surname" placeholder="Apellidos del cliente..." 
+                            [ngClass]="{'is-invalid': form.controls['surname'].errors && submitted}" >
+                        <div *ngIf="form.controls['surname'].errors && submitted">
+                            <small class="text-danger">Favor de ingresar apellidos válidos</small>
+                        </div>
+                        </div>
+                    </div>
+
+                    <br><br><br>
+          
+                    <!-- rfc  -->
+          
+                    <div class="col-md-6"> 
+                        <div class="form-group">
+                        <label for="rfc">RFC <span class="text-danger">*</span> </label>
+                        <input type="text" class="form-control form-edit" formControlName="rfc" id="rfc" placeholder="RFC del cliente..." 
+                            [ngClass]="{'is-invalid': form.controls['rfc'].errors && submitted}" >
+                        <div *ngIf="form.controls['rfc'].errors && submitted">
+                            <small class="text-danger">Favor de ingresar un rfc válido</small>
+                        </div>
+                        </div>
+                    </div>
+          
+                    <!-- mail  -->
+          
+                    <div class="col-md-6"> 
+                        <div class="form-group">
+                        <label for="mail">Correo electrónico <span class="text-danger">*</span> </label>
+                        <input type="text" class="form-control form-edit" formControlName="mail" id="mail" placeholder="Correo electrónico del cliente..." 
+                            [ngClass]="{'is-invalid': form.controls['mail'].errors && submitted}" >
+                        <div *ngIf="form.controls['mail'].errors && submitted">
+                            <small class="text-danger">Favor de ingresar un correo electrónico válido</small>
+                        </div>
+                        </div>
+                    </div>  
+
+                    <br><br><br>
+          
+                    <!-- region_id  -->
+          
+                    <div class="col-md-6"> 
+                        <div class="form-group">
+                          <label for="region_id">Región <span class="text-danger">*</span> </label>
+                          <select class="form-select form-edit" formControlName="region_id" id="region_id"
+                              [ngClass]="{'is-invalid': form.controls['region_id'].errors && submitted}">
+                              <option [ngValue]=null hidden>Selecciona una región...</option>
+                              <ng-container *ngFor="let region of regions" >
+                                  <option *ngIf="region.status == 1" [ngValue]="region.region_id">{{ region.region }}</option>
+                              </ng-container>
+                          </select>
+                          <div *ngIf="form.controls['region_id'].errors && submitted">
+                              <small class="text-danger">Favor de seleccionar una región válida</small>
+                          </div>
+                        </div>
+                    </div>
+          
+                    <br><br><br>
+
+                    <!-- address  -->
+          
+                    <div class="form-group">
+                      <label for="address">Dirección <span class="text-danger">*</span> </label>
+                      <textarea rows="2" class="form-control form-edit" formControlName="address" id="address" placeholder="Dirección del cliente..." 
+                        [ngClass]="{'is-invalid': form.controls['address'].errors && submitted}" >
+                      </textarea>
+                      <div *ngIf="form.controls['address'].errors && submitted">
+                        <small class="text-danger">Favor de ingresar una dirección válida</small>
+                      </div>
+                    </div>
+                </div>
+
+                <br>
+      
+                <!-- button  -->
+                
+                <div class="form-button">
+                  <button type="submit" class="btn btn-primary btn-form">Guardar</button>
+                </div>
+      
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>

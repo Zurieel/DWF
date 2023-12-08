@@ -1,0 +1,40 @@
+<h1>Facturas</h1>
+
+<div class="card">
+    <!-- Table content --> 
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>RFC</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th>Más</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr *ngFor="let invoice of invoices" >
+                        <td>{{ invoice.invoice_id }}</td>
+                        <td>{{ invoice.rfc }}</td>
+                        <td>{{ invoice.created_at | date:'yyyy-MM-dd'}}</td>
+                        <td>{{ invoice.total | currency: 'USD' }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-dropdown btn-dark" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="ph ph-dots-three-circle icon-menu"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item edit-item" (click)="showInvoice(invoice.invoice_id)">
+                                        <i class="ph ph-file-archive"></i> Generar Factura
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

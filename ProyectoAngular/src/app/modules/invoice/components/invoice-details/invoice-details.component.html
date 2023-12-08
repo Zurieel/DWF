@@ -1,0 +1,152 @@
+<div class="row">
+    <div class="col-md mb-3">
+        <span class="btn btn-back" (click)="downloadInvoice()">
+            <i class="ph ph-download-simple"></i>
+            Descargar
+        </span>
+    </div>
+</div>
+
+
+<div class="card principal">
+
+    <div class="row section">
+
+        <div class="card content col-md-2"> 
+            <img src="assets/imagenes/LuckyAide.png" alt="Imagen de Lucky Aide">
+        </div>
+
+        <div class="card content col-md-3">
+            <h6 class="mt-1">DOMICILIO FISCAL</h6>
+            <div>Lucky Aide de México. S. de R. L. de C.V</div>
+            <div>Calle NEXTENGO 78</div>
+            <div>Col. SANTA CRUZ ACAYUCAN</div>
+            <div>Del. AZCAPOTZALCO</div>
+            <div>CIUDAD DE MEXICO, MEXICO</div>
+            <div>C.P. 02770</div>
+        </div>
+
+        <div class="card content col-md-4">
+            <h6 class="mt-1">EXPEDIDO EN</h6>
+            <div>DOMICILIO ESTABLECIMIENTO</div>
+            <div>AV MEXICO Y AZTECAS 3300-F</div>
+            <div>SECTOR HIDALGO</div>
+            <div>GUADALAJARA, JALISCO, MEXICO</div>
+            <div>C.P. 446690</div>
+            <div>ENTRE BLVD HOMERO Y TEATRO DE LA REPÚBLICA</div>
+            <div>REGIMEN FISCAL: Régimen de Consolidación</div>
+        </div>
+
+        <div class="card content col-md">
+            <div class="row mt-2">
+                <div class="card content col-md-6">
+                    <div class="card-header" style="font-weight:500;">FECHA</div>
+                    <div class="card body text-center">{{ invoice.created_at | date:'dd-MM-yyyy' }}</div>
+                </div>
+                <div class="card content col-md-6">
+                    <div class="card-header" style="font-weight: 500;">FACTURA</div>
+                    <div class="card body text-center">{{ randomString }}</div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="card content col-md">
+                    <div class="card-header" style="font-weight:500;">FOLIO FISCAL</div>
+                    <div class="card body text-center">A8C2DF43-2F17-4313-9FFE</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row section">
+
+        <div class="card content">
+            <div class="card-header" style="font-weight:500;">CLIENTE</div>
+            <div class="card body">
+                <div class="row text-center mt-3 mb-3">
+                    <div class="col-md-4">NOMBRE: {{ invoice.customer.name + " " + invoice.customer.surname }}</div>
+                    <div class="col-md-4">RFC: {{ invoice.customer.rfc }}</div>
+                    <div class="col-md-4">DIRECCION: {{ invoice.customer.address }}</div>
+                </div>     
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row section">
+        
+        <div class="card content col-md">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>GTIN</th>
+                            <th>Cantidad</th>
+                            <th>Producto</th>
+                            <th>Valor Unitario</th>
+                            <th>Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr *ngFor="let item of invoice.items">
+                            <td>{{ item.gtin }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.item_id }}</td>
+                            <td>{{ item.unit_price | currency: 'USD' }}</td>
+                            <td>{{ item.total | currency: 'USD' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row section">
+
+        <div class="card content col-md">
+            <div class="card-header" style="font-weight:500;">TOTAL</div>
+            <div class="card body">
+                <div class="row text-center mt-3 mb-3">
+                    <div class="col-md-4">
+                        <div class="row-md">SUBTOTAL</div>
+                        <div class="row-md">{{ invoice.subtotal | currency: 'USD' }}</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row-md">IVA 16%</div>
+                        <div class="row-md">{{ invoice.taxes | currency: 'USD' }}</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row-md">TOTAL</div>
+                        <div class="row-md">{{ invoice.total | currency: 'USD' }}</div>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row section">
+
+        <div class="card content col-md-3 mt-4">
+            <img src="assets/imagenes/qrcode.png" alt="">
+        </div>
+
+        <div class="card content col-md">
+            <div class="row">
+                <h6>Sello Digital del CFDI:</h6>
+                <div>lPR9CZq8nBXIoCxTHVvyRSkqsc91B4OEV+rsVLbLUSchyDjh2mkKOaIhpPCiqZ0PuTTjlQX7VrwocNTqlcLBvEEIu65wnOsZfCqVd4INL9uT8hP6CGh4xJkdpeCroC3CS8kb2i702Z
+                    IFs9SxU7AWPVgQFvl2In4xTKN6BDfCdMOeDzatitvy4yjkDP4YrwVqfecWfbbi44EPemFFSfIK5VlJeHa0Db2x0Fig6pYdE33u6+uEzon/6AL9hURdgoV/7XId+Zw5cZvGSkOcRqmN6
+                    mwjR9g6AyDbWEarIAkc8S82khUq3lrPAk3czhJ5Bnh4EJ+h1pYTn+hLvPqtP021+A==</div>
+            </div>
+            <div class="row mt-4">
+                <h6>Sello del SAT:</h6>
+                <div>SV73LzHTXycDfF/8p4+AwWqA59Q2uCCppMKCUO1eG+GAoi/CVEKnQ/ayR+Ifdi4LmPHyaoLqBhzrcwtH+ZzaZXaz6iTNjgOhQWWOLeYATBFs9P93Sk/1AxRC1iBsq1Oci8d9flK
+                    Y9N+arCTdeqFVt8uZXcz1fj5gvB8Hhrhvi/i4ttnWKCbvd+4Mf+XO4DholRPWvv5Uxo04IK4zxgwFyU+oh+nun2nieNkKsZ/rMEFaCbwWLcxkrHTC6fPVd3QoEG9C0nU9awaFt/mvHx
+                    kI1G8AS246JFSYX0OMpWLOUhjnqTOWiP/grFljds66qkfvG4dqaRSTJm+6Zphk1HNzoA==</div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,22 @@
+.navbar-brand{
+    height: 50px;
+}
+
+.nav-item{
+    margin-right: 20px;
+}
+
+.nav-link{
+    color: white;
+    font-size: 17px;
+}
+.nav-link.dropdown-toggle{
+    color: white;
+}
+
+.ph.ph-shopping-cart.i-cart{
+    font-size: 25px;
+}
+
+
+

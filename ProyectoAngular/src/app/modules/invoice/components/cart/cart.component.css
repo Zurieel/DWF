@@ -1,0 +1,33 @@
+.btn.btn-buy-cart{
+    width: auto;
+}
+
+.btn.btn-delete-cart{
+    width: auto;
+}
+
+.btn.btn-delete-product{
+    background-color: rgb(55, 128, 55);
+}
+
+.card.cart-image{
+    border: none;
+    width: 450px;
+}
+
+.product-image{
+    max-width: 70px;
+    max-height: 70px; 
+    width: auto;
+    height: auto;
+}
+
+.vertical-center{
+    vertical-align: middle;
+}
+
+.text-empty-cart{
+    color: #3a9c21;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    font-size: 50px;
+}
