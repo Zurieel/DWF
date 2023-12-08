@@ -4,10 +4,11 @@
 
 .btn.btn-delete-cart{
     width: auto;
+    background-color: brown;
 }
 
 .btn.btn-delete-product{
-    background-color: rgb(55, 128, 55);
+    background-color: brown;
 }
 
 .card.cart-image{
