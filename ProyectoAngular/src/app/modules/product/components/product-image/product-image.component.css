@@ -47,7 +47,8 @@ td{
     text-align: center;
     color: rgb(55, 128, 55);
     font-size: 55px;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    font-style: oblique;
+    font-weight: bold;
     background-color: transparent;
     border: none;
     margin-bottom: 15px;

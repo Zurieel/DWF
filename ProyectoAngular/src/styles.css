@@ -1,7 +1,8 @@
 h1{ 
     color: rgb(55, 128, 55);
     font-size: 55px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: oblique;
+    font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
 }

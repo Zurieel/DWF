@@ -8,6 +8,7 @@
 
 .text-welcome{
     color: #3a9c21;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    font-style: oblique;
+    font-weight: bold;
     font-size: 65px;
 }

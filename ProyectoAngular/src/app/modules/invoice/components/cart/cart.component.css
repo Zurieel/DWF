@@ -29,6 +29,7 @@
 
 .text-empty-cart{
     color: #3a9c21;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
     font-size: 50px;
+    font-style: oblique;
+    font-weight: bold;
 }
