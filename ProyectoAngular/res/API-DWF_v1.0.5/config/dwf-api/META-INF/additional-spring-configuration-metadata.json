@@ -1,0 +1,7 @@
+{"properties": [
+  {
+    "name": "product.image.directory.path",
+    "type": "java.lang.String",
+    "description": "/home/zurieel/CC/sexto/Desarrollo-Web-Front-end/ProyectoAngular/src/assets/imagenes"
+  }
+]}
