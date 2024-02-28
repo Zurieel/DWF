@@ -2,4 +2,4 @@
 
  ---
 
-Prácticas del curso Desarrollo Web Front-end 2024-1
+Prácticas y Proyecto del curso Desarrollo Web Front-end 2024-1
